@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddReminderActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="16dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="?attr/colorPrimary"
+        />
+
+    <LinearLayout
+        android:id="@+id/add_reminder_layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:layout_below="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/reminder_title"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="72dp"
+            android:textSize="25dp"
+            android:lines="4"
+            android:minLines="4"
+            android:gravity="top|left"
+            android:textColor="@android:color/white"
+            android:scrollHorizontally="false"
+            android:textColorHint="@color/primary_text_disabled_material_dark"
+            android:inputType="textCapWords|textMultiLine"
+            android:layout_marginRight="16dp"/>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/add_reminder_layout_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginTop="8dp"
+                android:text="Details"
+                android:textSize="15dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="72dp"
+                android:textColor="@color/abc_secondary_text_material_dark"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:clickable="true"
+                android:onClick="setDate"
+                android:id="@+id/date"
+                android:background="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@drawable/ic_baseline_calendar_view_day_24"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/date_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/date_text"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        android:text="Date"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/set_date"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+<!--time-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:clickable="true"
+                android:onClick="setTime"
+                android:id="@+id/time"
+                android:background="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/time_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/time_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/time_text"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        android:text="Time"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/set_time"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+<!--Repeat-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:id="@+id/repeat">
+
+                <ImageView
+                    android:id="@+id/repeat_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@drawable/ic_baseline_sync_24"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:id="@+id/repeat_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/repeat_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_text"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        android:text="Repeat"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/set_repeat"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        />
+                </LinearLayout>
+                <Switch
+                    android:id="@+id/repeat_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="8dp"
+                    android:onClick="onSwitchRepeat"
+                    android:checked="true"
+                    android:textOn="On"
+                    android:textOff="Off"/>
+
+            </RelativeLayout>
+            <!--Repetition Interval-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:clickable="true"
+                android:onClick="setRepeatNo"
+                android:id="@+id/RepeatNo"
+                android:background="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/repeat_no_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@drawable/ic_baseline_unfold_more_24"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/repeat_no_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_no_text"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        android:text="Repetition Interval"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/set_repeat_no"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15dp"
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--Repetition Type -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:clickable="true"
+                android:onClick="selectRepeatType"
+                android:id="@+id/RepeatType"
+                android:background="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/repeat_type_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_baseline_subject_24"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/repeat_type_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_type_text"
+                        android:textColor="@color/abc_primary_text_material_dark"
+                        android:textSize="15sp"
+                        android:text="Type of Repetitions"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/set_repeat_type"
+                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="15sp"
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/add_reminder_layout_top"
+        android:background="@drawable/toolbar_dropshadow"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_notifications_off_24"
+        android:onClick="selectFab1"
+        app:backgroundTint="@color/colorAccent"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="168dp"
+        android:layout_marginStart="8dp"
+        android:layout_centerHorizontal="true"
+        app:tint="@android:color/white" />
+
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="selectFab1"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
+        app:fabColorNormal="@color/colorAccent"
+        app:fabColorPressed="@color/pink_A200"
+        app:srcCompat="@drawable/ic_baseline_notifications_off_24"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="168dp"
+        android:layout_marginStart="8dp"
+        android:layout_centerHorizontal="true"
+        android:focusable="true" />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_notifications_off_24"
+        app:backgroundTint="@color/colorAccent"
+        android:onClick="selectFab2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="168dp"
+        android:layout_marginStart="8dp"
+        android:layout_centerHorizontal="true"
+        app:tint="@android:color/white" />
+
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="selectFab2"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
+        app:fabColorNormal="@color/colorAccent"
+        app:fabColorPressed="@color/pink_A200"
+        app:srcCompat="@drawable/ic_baseline_notifications_off_24"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="168dp"
+        android:layout_marginStart="8dp"
+        android:layout_centerHorizontal="true"
+        android:focusable="true" />-->
+
+
+</RelativeLayout>

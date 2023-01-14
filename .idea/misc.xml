@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable-hdpi/btnsm.xml" value="0.119" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable-xxhdpi/ic_public.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable-xxxhdpi/btn.xml" value="0.119" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1515" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.2015" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.259" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/drawable-v21/ic_menu_send.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/drawable/side_nav_bar.xml" value="0.1445" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/drawable/toolbar_dropshadow.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_about.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_add_reminder.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_body_calculator.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_body_information.xml" value="0.2" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_edit_profile.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_main.xml" value="0.22282608695652173" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_new__profile.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_new_reminder.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_progress_update.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/activity_weight.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/alarm_items.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/app_bar_home.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/bodymeasuredialog.xml" value="0.1334853090172239" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/content_home.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/dialog_add_post.xml" value="0.19610507246376813" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/fragment_progress_report.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/goalsdialog.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/imageconfirm.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/imagedialog.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/item_news_card.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/item_weight_list.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/namedialog.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/nav_header_home.xml" value="0.2" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/profiledialog.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/uinfodialog.xml" value="0.176" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/layout/weightprogressdialog.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/menu/add_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/menu/home.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/menu/menu_add_reminder.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/menu/profile_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/dialogs/menu/update_info.xml" value="0.13072916666666667" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/activity_forgotpwd.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/activity_reg.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/activity_workout.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/fragment_diet.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/fragment_homm.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/layouts/layout/fragment_reminder.xml" value="0.25" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.119" />
+        <entry key="..\:/Users/Rello/AndroidStudioProjects/AndroidProjects/pw/Cfit/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.119" />
+      </map>
+    </option>
+  </component>
+  <component name="NullableNotNullManager">
+    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
+    <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />
+    <option name="myNullables">
+      <value>
+        <list size="12">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
+          <item index="4" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
+          <item index="5" class="java.lang.String" itemvalue="androidx.annotation.Nullable" />
+          <item index="6" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.Nullable" />
+          <item index="7" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
+          <item index="8" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNullable" />
+          <item index="9" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
+          <item index="10" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.Nullable" />
+          <item index="11" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
+        </list>
+      </value>
+    </option>
+    <option name="myNotNulls">
+      <value>
+        <list size="11">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
+          <item index="4" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNonNull" />
+          <item index="5" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.NonNull" />
+          <item index="6" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
+          <item index="7" class="java.lang.String" itemvalue="androidx.annotation.NonNull" />
+          <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
+          <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
+          <item index="10" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
+        </list>
+      </value>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

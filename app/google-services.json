@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "945281543469",
+    "firebase_url": "https://cfit-1f615.firebaseio.com",
+    "project_id": "cfit-1f615",
+    "storage_bucket": "cfit-1f615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945281543469:android:c78c556c1a433c16",
+        "android_client_info": {
+          "package_name": "com.odin.cfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945281543469-h0glghvrs25curopt42amn5ruskgvsqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3U04kE42WRNEXRfnlCXWXafuaOrkBSIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945281543469-h0glghvrs25curopt42amn5ruskgvsqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945281543469:android:bca224c55581f06b62f7a4",
+        "android_client_info": {
+          "package_name": "com.rello.cleanfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945281543469-h0glghvrs25curopt42amn5ruskgvsqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3U04kE42WRNEXRfnlCXWXafuaOrkBSIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945281543469-h0glghvrs25curopt42amn5ruskgvsqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

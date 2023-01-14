@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_favorite_purple_300_24dp"
+            android:title="CleanFit Community" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_progress_report"
+            android:icon="@drawable/trend"
+            android:title="Progress Information" />
+        <item
+            android:id="@+id/nav_workout"
+            android:icon="@drawable/fitness"
+            android:title="Workout" />
+        <item
+            android:id="@+id/nav_food"
+            android:icon="@drawable/ic_baseline_fastfood_24"
+            android:title="Food" />
+        <item
+            android:id="@+id/nav_reminder"
+            android:icon="@drawable/ic_notifications_purple_300_24dp"
+            android:title="Reminder" />
+
+    </group>
+<!--7E1994-->
+
+</menu>

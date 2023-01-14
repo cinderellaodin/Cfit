@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".progressUpdate"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_xxxlarge"
+    >
+
+
+    <ImageView
+        android:id="@+id/Cimageview"
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/etprogDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:hint="@string/select_date"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2" />
+
+
+    <EditText
+        android:id="@+id/etCweight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/current_weight" />
+
+    <EditText
+        android:id="@+id/etwaist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/current_waist" />
+
+
+    <EditText
+        android:id="@+id/etChest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/current_chest" />
+
+
+    <EditText
+        android:id="@+id/ethip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/current_hip" />
+
+
+    <EditText
+        android:id="@+id/etthigh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/current_thighs" />
+
+
+    <EditText
+        android:id="@+id/etarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/current_arm" />
+
+
+
+
+
+</LinearLayout>

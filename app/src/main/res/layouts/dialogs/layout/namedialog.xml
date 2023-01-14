@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_event_name"
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        >
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:hint="@string/Nname" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <Button
+          android:id="@+id/btncancle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/btnsm"
+          android:text="cancel"
+          android:layout_toLeftOf="@+id/btnsavename"
+          android:layout_marginRight="20dp"
+          android:textColor="@color/colorAccent"
+          />
+
+
+      <Button
+          android:id="@+id/btnsavename"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/btnsm"
+          android:text="Save"
+       android:layout_alignParentRight="true"
+          android:textColor="@color/colorAccent"
+          />
+  </RelativeLayout>
+
+</LinearLayout>

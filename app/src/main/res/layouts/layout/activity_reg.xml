@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/lognreg_bg"
+    android:orientation="vertical"
+    tools:context="com.odin.cfit.reg">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9affffff"
+        android:padding="10dp"
+        android:orientation="vertical"
+        >
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="#233c71"
+        android:textColor="#fff"
+        android:text="Register with facebook"
+        android:id="@+id/fbreg_btn"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="or"
+        android:textColor="#e9ded8d8"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textSize="10pt"
+        />
+
+    <!--email-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_address"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        >
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Register with email"
+        android:background="#ccefe9e9"
+        android:id="@+id/reg_btn"
+        />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:text="login here"
+    android:textColor="#424141"
+    android:textStyle="bold"
+    android:layout_gravity="right"
+    android:textSize="8pt"
+    android:id="@+id/tvlog"
+    />
+    </LinearLayout>
+
+</LinearLayout>

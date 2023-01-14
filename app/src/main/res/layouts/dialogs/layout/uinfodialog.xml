@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_large"
+    >
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/bmicalc"
+        android:textSize="20sp"
+        android:textStyle="bold"
+android:layout_gravity="center_horizontal"
+        />
+
+   <!-- <ScrollView
+        android:layout_below="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            >
+          <!--  <Spinner
+                android:id="@+id/spUnits"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:entries="@array/measurement_units"
+                android:layout_margin="15dp"
+                />-->
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:gravity="center"
+              android:padding="@dimen/padding_body"
+              >
+
+              <Spinner
+                  android:id="@+id/spinnerGender"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="5dp"
+                  android:entries="@array/gender_name"
+                  android:imeOptions="actionNext"
+                  android:padding="@dimen/spacing_xsmall"
+
+                  />
+
+              <TextView
+                  android:id="@+id/etdob"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:layout_marginTop="5dp"
+                  android:hint="@string/dob"
+                  android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2" />
+
+          </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/etheight"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    android:hint="@string/enter_height" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/etweight"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    android:hint="@string/enter_weight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/etgweight"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    android:hint="@string/enter_goalweight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <TextView
+                android:id="@+id/activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activity"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:layout_gravity="center"
+                />
+
+            <RatingBar
+                android:id="@+id/rb"
+                android:layout_margin="@dimen/spacing_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
+                android:stepSize="1"
+                android:progressTint="@color/colorAccent"
+                android:hint="activity"
+                android:layout_below="@id/activity"
+                android:layout_gravity="center"
+
+                />
+            <TextView
+                android:id="@+id/valueRb"
+                android:layout_margin="@dimen/spacing_medium"
+                android:padding="@dimen/padding_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/activi_rate"
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:gravity="center"
+                >
+                <Button
+                    android:id="@+id/btncancle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:text="cancel"
+                    android:layout_toLeftOf="@+id/btnsaveinfo"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorBtnsm"
+                    />
+
+
+                <Button
+                    android:id="@+id/btnsaveinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/purple_300"
+                    android:text="Save"
+                    android:textColor="@color/colorBtnsm" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+  <!--  </ScrollView>-->
+
+</LinearLayout>

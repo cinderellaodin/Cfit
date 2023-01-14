@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/lognreg_bg"
+    android:orientation="vertical"
+    tools:context="com.odin.cfit.forgotpwd">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9affffff"
+        android:padding="10dp"
+        android:orientation="vertical"
+        >
+
+
+        <!--email-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_address"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="100dp"
+            >
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email Address"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=" reset password"
+            android:background="#ccefe9e9"
+            android:id="@+id/reset_btn"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

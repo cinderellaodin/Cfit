@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+
+
+
+    <ProgressBar
+        android:id="@+id/progress_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_large"
+        android:orientation="vertical"
+        >
+
+        <!--<lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scrollbars="vertical"
+            android:scrollingCache="true" />
+
+        <!-- android:layout_below="@id/app_bar_layout"-->
+
+        <!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+-->
+    </LinearLayout>
+
+   <!-- <LinearLayout
+        android:id="@+id/lyt_no_connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:tint="@color/grey_20"
+            app:srcCompat="@drawable/ic_baseline_signal_wifi_off_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:text="No connection"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@color/grey_90"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/spacing_large"
+                android:layout_height="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:layout_marginRight="@dimen/spacing_medium"
+                app:tint="@color/grey_90"
+                app:srcCompat="@drawable/ic_baseline_refresh_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tap to retry"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_90"
+                android:gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </LinearLayout>-->
+
+
+
+
+<!--fab menu-->
+    <View
+        android:id="@+id/back_drop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay_dark_30"
+        android:clickable="true"
+        android:fitsSystemWindows="true" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="70dp"
+        android:gravity="end|right"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lyt_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end|right"
+                android:layout_margin="@dimen/spacing_middle"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp"
+                app:contentPadding="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/add_gallery_images"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:clickable="true"
+                android:tint="@color/grey_80"
+                app:backgroundTint="@android:color/white"
+                app:fabSize="mini"
+                app:rippleColor="@android:color/black"
+                app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
+
+            <View
+                android:layout_width="@dimen/spacing_xmedium"
+                android:layout_height="0dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end|right"
+                android:layout_margin="@dimen/spacing_middle"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp"
+                app:contentPadding="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/add_camera_images"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:clickable="true"
+                android:tint="@color/grey_80"
+                app:backgroundTint="@android:color/white"
+                app:fabSize="mini"
+                app:rippleColor="@android:color/black"
+                app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+
+            <View
+                android:layout_width="@dimen/spacing_xmedium"
+                android:layout_height="0dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_smlarge"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginRight="@dimen/spacing_smlarge"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:clickable="true"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="normal"
+            app:rippleColor="@android:color/white"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
