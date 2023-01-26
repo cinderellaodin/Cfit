@@ -35,8 +35,8 @@ public class AlarmReminderDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+//added because of the first error
         if (i < 2)
-            sqLiteDatabase.execSQL("ALTER TABLE "+ AlarmReminderContract.AlarmReminderEntry.TABLE_NAME +" ADD "+ AlarmReminderContract.AlarmReminderEntry.KEY_TITLE + "TEXT NOT NULL");
+            sqLiteDatabase.execSQL("ALTER TABLE "+ AlarmReminderContract.AlarmReminderEntry.TABLE_NAME +" ADD "+ AlarmReminderContract.AlarmReminderEntry.KEY_TITLE + "TEXT"+ i );
     }
 }

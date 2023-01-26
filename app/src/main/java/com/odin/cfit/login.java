@@ -41,7 +41,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
         }
 
-
         /*dec */
         fblogin_btn = (Button)findViewById(R.id.fblogin_btn);
         login_btn = (Button) findViewById(R.id.login_btn);
