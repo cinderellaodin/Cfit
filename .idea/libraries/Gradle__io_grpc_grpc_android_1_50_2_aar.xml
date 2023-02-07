@@ -2,7 +2,6 @@
   <library name="Gradle: io.grpc:grpc-android:1.50.2@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/994950ff9e8d94831ad2dbca57acf5da/transformed/jetified-grpc-android-1.50.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/994950ff9e8d94831ad2dbca57acf5da/transformed/jetified-grpc-android-1.50.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/994950ff9e8d94831ad2dbca57acf5da/transformed/jetified-grpc-android-1.50.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

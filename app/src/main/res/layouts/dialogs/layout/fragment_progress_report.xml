@@ -23,18 +23,47 @@
         android:padding="@dimen/spacing_large"
         android:orientation="vertical"
         >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium"
+        android:background="@color/purple_300"
+        >
 
-        <!--<lecho.lib.hellocharts.view.LineChartView
+        <lecho.lib.hellocharts.view.LineChartView
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />-->
+            android:layout_height="180dp" />
+    </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:scrollbars="vertical"
-            android:scrollingCache="true" />
+            android:layout_height="@dimen/spacing_large" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight Entry"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/grey_80" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_large" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_large"
+        android:scrollbars="vertical"
+        android:scrollingCache="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
 
         <!-- android:layout_below="@id/app_bar_layout"-->
 
@@ -101,8 +130,6 @@
     </LinearLayout>-->
 
 
-
-
 <!--fab menu-->
     <View
         android:id="@+id/back_drop"
@@ -117,15 +144,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="70dp"
         android:gravity="end|right"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/lyt_gallery"
+            android:id="@+id/lyt_tape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -145,25 +168,25 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/add_gallery_images"
+                    android:text="Add Body Progress"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_gallery"
+                android:id="@+id/fab_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_smlarge"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_smlarge"
                 android:layout_marginBottom="@dimen/spacing_middle"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:layout_marginTop="@dimen/spacing_middle"
                 android:clickable="true"
                 android:tint="@color/grey_80"
                 app:backgroundTint="@android:color/white"
                 app:fabSize="mini"
                 app:rippleColor="@android:color/black"
-                app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
+                app:srcCompat="@drawable/body" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
@@ -172,7 +195,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lyt_camera"
+            android:id="@+id/lyt_scale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -192,25 +215,25 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/add_camera_images"
+                    android:text="Add Weight Progress"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_camera"
+                android:id="@+id/fab_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_smlarge"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_smlarge"
                 android:layout_marginBottom="@dimen/spacing_middle"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:layout_marginTop="@dimen/spacing_middle"
                 android:clickable="true"
                 android:tint="@color/grey_80"
                 app:backgroundTint="@android:color/white"
                 app:fabSize="mini"
                 app:rippleColor="@android:color/black"
-                app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+                app:srcCompat="@drawable/weight" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"

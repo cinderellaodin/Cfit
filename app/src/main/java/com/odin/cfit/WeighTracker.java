@@ -8,6 +8,9 @@ public class WeighTracker {
     double progweight;
     public String key;
 
+    public WeighTracker() {
+    }
+
     public WeighTracker(String progDate, double progweight) {
         this.progDate = progDate;
         this.progweight = progweight;

@@ -210,9 +210,6 @@ public class homm extends Fragment {
         });
 
 
-
-
-
         // on item list clicked
         mfitAdapter.setOnItemClickListener(new FitNewsAdapter.OnItemClickListener() {
             @Override

@@ -40,8 +40,9 @@ public class WeightTrackerAdapter extends RecyclerView.Adapter<WeightTrackerAdap
             WeighTracker weighTrackerC = mWeighTracker.get(position);
 
             Double weight = weighTrackerC.getProgweight();
+            holder.WeightTitle.setText(String.valueOf(weight) + "Kg");
 
-            holder.WeightTitle.setText(String.valueOf(weight));
+          //  holder.WeightTitle.setText((int) weighTrackerC.getProgweight());
         holder.loggedDate.setText(weighTrackerC.getProgDate());
     }
 

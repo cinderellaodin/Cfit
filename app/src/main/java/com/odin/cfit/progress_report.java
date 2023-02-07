@@ -4,7 +4,10 @@ package com.odin.cfit;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
@@ -16,12 +19,17 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +50,7 @@ import com.odin.cfit.model.News;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import lecho.lib.hellocharts.view.LineChartView;
@@ -50,34 +59,33 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 
 public class progress_report extends Fragment {
+    RecyclerView recyclerView;
+    private WeightTrackerAdapter mwtrackerAdapter;
+    List<WeighTracker> mWeighTracker;
 
     private View parent_view;
     private View back_drop;
     private boolean rotate = false;
-    private View lyt_gallery;
-    private View lyt_camera;
-    FloatingActionButton fab_add, fab_camera, fab_gallery;
+    private View lyt_tape;
+    private View lyt_scale;
+
 
     private FirebaseAuth firebaseAuth;
     private FirebaseStorage mStorage;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
     private ValueEventListener mDBListener;
-    private Uri filepath, photocam;
-    FirebaseUser user;
-    RecyclerView recyclerView;
 
-    private WeightTrackerAdapter mwtrackerAdapter;
-    List<WeighTracker> mWeighTracker;
+    FirebaseUser user;
+
 
     private ProgressBar mProgressCircle;
     private SwipeRefreshLayout swipeContainer;
     private LinearLayout lyt_no_connection;
 
-    private static final int CAMERA_REQUEST = 1888;
-    private static final int MY_CAMERA_PERMISSION_CODE = 100;
-
-    private int REQUEST_CODE = 1;
+    int day, month, year, yearfinal;
+    Calendar calendar;
+    DatePickerDialog datePickerDialog;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -123,9 +131,8 @@ public class progress_report extends Fragment {
             }
         });*/
 
-
         //line chart
-     //   LineChartView lineChartView = view.findViewById(R.id.chart);
+      LineChartView lineChartView = view.findViewById(R.id.chart);
 
 
 
@@ -133,14 +140,14 @@ public class progress_report extends Fragment {
         parent_view = view.findViewById(android.R.id.content);
         back_drop = view.findViewById(R.id.back_drop);
         /*buttons in fab menu*/
-        fab_add = (FloatingActionButton) view.findViewById(R.id.fab_add);
-        fab_camera = (FloatingActionButton) view.findViewById(R.id.fab_camera);
-        fab_gallery = (FloatingActionButton) view.findViewById(R.id.fab_gallery);
+        final FloatingActionButton fab_body = (FloatingActionButton) view.findViewById(R.id.fab_body);
+        final FloatingActionButton fab_weight = (FloatingActionButton) view.findViewById(R.id.fab_weight);
+        final FloatingActionButton fab_add = (FloatingActionButton) view.findViewById(R.id.fab_add);
 
-        lyt_gallery = view.findViewById(R.id.lyt_gallery);
-        lyt_camera = view.findViewById(R.id.lyt_camera);
-        ViewAnimation.initShowOut(lyt_gallery);
-        ViewAnimation.initShowOut(lyt_camera);
+        lyt_tape = view.findViewById(R.id.lyt_tape);
+        lyt_scale = view.findViewById(R.id.lyt_scale);
+        ViewAnimation.initShowOut(lyt_tape);
+        ViewAnimation.initShowOut(lyt_scale);
         back_drop.setVisibility(View.GONE);
 
         fab_add.setOnClickListener(new View.OnClickListener() {
@@ -154,30 +161,6 @@ public class progress_report extends Fragment {
             @Override
             public void onClick(View view) {
                 toggleFabMode(fab_add);
-            }
-        });
-
-
-        fab_gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "select picture"), REQUEST_CODE);
-
-            }
-        });
-
-        fab_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "camera", Toast.LENGTH_SHORT).show();
-
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
-
             }
         });
 
@@ -199,6 +182,111 @@ public class progress_report extends Fragment {
             }
         });*/
 
+        fab_body.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ReportDialog();
+                Intent intent = new Intent(getActivity(), progressUpdate.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+        fab_weight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ReportDialog();
+
+            }
+        });
+
+    }
+
+    private void ReportDialog() {
+
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.weightdialog);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        final Button bt_submit = (Button) dialog.findViewById(R.id.updateweight);
+        EditText etCdate =(EditText) dialog.findViewById(R.id.weigthdate);
+        EditText etCWeight =(EditText) dialog.findViewById(R.id.weigtupdate);
+
+        etCdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                //used for age
+                yearfinal = calendar.get(Calendar.YEAR);
+
+                datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        String tdate = String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(dayOfMonth);
+                        etCdate.setText(tdate);
+
+                      /*  int yeardiff = yearfinal - year;
+                        uage = String.valueOf(yeardiff);*/
+                        // etdob.setText(uage);
+
+
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+        bt_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveWeight(etCdate.getText().toString().trim(), Double.
+                        parseDouble(etCWeight.getText().toString().trim()));
+                dialog.dismiss();
+                Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+
+    }
+
+    private void saveWeight(String cDate, double cWeightProgress) {
+        WeighTracker weightTracker = new WeighTracker(cDate, cWeightProgress);
+        String uploadCId =   databaseReference.push().getKey();
+        databaseReference.child(user.getUid()).child("Weight Tracker").child(uploadCId).setValue(weightTracker);
+
+    }
+
+
+    /*for fab menu animation*/
+    private void toggleFabMode(View v) {
+        rotate = ViewAnimation.rotateFab(v, !rotate);
+        if (rotate) {
+            ViewAnimation.showIn(lyt_tape);
+            ViewAnimation.showIn(lyt_scale);
+            back_drop.setVisibility(View.VISIBLE);
+        } else {
+            ViewAnimation.showOut(lyt_tape);
+            ViewAnimation.showOut(lyt_scale);
+            back_drop.setVisibility(View.GONE);
+        }
     }
 
     private void retrieveData() {
@@ -209,7 +297,7 @@ public class progress_report extends Fragment {
         mWeighTracker = new ArrayList<>();
         mwtrackerAdapter = new WeightTrackerAdapter(getActivity(), mWeighTracker);
 
-        mDBListener = databaseReference.child("Weight Tracker").addValueEventListener(new ValueEventListener() {
+        mDBListener = databaseReference.child(user.getUid()).child("Weight Tracker").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mWeighTracker.clear();
@@ -220,10 +308,9 @@ public class progress_report extends Fragment {
                     if (mWeighTracker.size()<=0) {
                         Toast.makeText(getActivity(), "No Posts yet\n be sure to post some fashion trends", Toast.LENGTH_SHORT).show();
 
-
                     }else{
                         recyclerView.setAdapter(mwtrackerAdapter);
-
+                       // Toast.makeText(getActivity(), "weight"+ weights, Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -264,51 +351,6 @@ public class progress_report extends Fragment {
 
     }*/
 
-    /*for fab menu animation*/
-    private void toggleFabMode(View v) {
-        rotate = ViewAnimation.rotateFab(v, !rotate);
-        if (rotate) {
-            ViewAnimation.showIn(lyt_gallery);
-            ViewAnimation.showIn(lyt_camera);
-            back_drop.setVisibility(View.VISIBLE);
-        } else {
-            ViewAnimation.showOut(lyt_gallery);
-            ViewAnimation.showOut(lyt_camera);
-            back_drop.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filepath = data.getData();
-
-            try {
-
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filepath = data.getData());
-                // ((ImageView) getView().findViewById(R.id.cropImageView)).setImageBitmap(bitmap);
-                Intent intent = new Intent(getActivity(), progressUpdate.class);
-                intent.setData(filepath);
-                startActivity(intent);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            photocam = data.getData();
-
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            //imageView.setImageBitmap(photo);
-            Intent intent = new Intent(getActivity(), progressUpdate.class);
-            intent.setData(photocam);
-            startActivity(intent);
-
-        }
-
-
-    }
 
 
     @Nullable
