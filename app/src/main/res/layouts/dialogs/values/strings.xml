@@ -86,6 +86,7 @@
     <string name="enter_wrist">Enter Wrist</string>
     <string name="enter_thighs">Enter thighs</string>
     <string name="enter_bsize">Dress Size</string>
+    <string name="diet_fragment">Click the Fab Button to calculate your required calorie to lose weight.</string>
 
 
 </resources>

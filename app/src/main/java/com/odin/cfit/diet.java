@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.w3c.dom.Text;
+
 /*import android.support.v4.app.Fragment;*/
 
 
 public class diet extends Fragment {
-
 
 
 
