@@ -87,6 +87,8 @@
     <string name="enter_thighs">Enter thighs</string>
     <string name="enter_bsize">Dress Size</string>
     <string name="diet_fragment">Click the Fab Button to calculate your required calorie to lose weight.</string>
+    <string name="HIDE">Hide</string>
+    <string name="foodDiet">You need to be in a Calorie Deficit to lose weight</string>
 
 
 </resources>

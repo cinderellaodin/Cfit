@@ -40,7 +40,7 @@ public class reg extends AppCompatActivity implements View.OnClickListener {
 
         progressDialog = new ProgressDialog(this);
 
-        fbreg_btn = (Button) findViewById(R.id.fbreg_btn);
+        //fbreg_btn = (Button) findViewById(R.id.fbreg_btn);
         reg_btn = (Button) findViewById(R.id.reg_btn);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);

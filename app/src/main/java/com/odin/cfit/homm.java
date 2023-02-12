@@ -60,8 +60,8 @@ public class homm extends Fragment {
 
     private View back_drop;
     private boolean rotate = false;
-    private View lyt_tape;
-    private View lyt_scale;
+   /* private View lyt_tape;
+    private View lyt_scale;*/
     private View lyt_post;
 
     private FirebaseAuth firebaseAuth;
@@ -100,16 +100,16 @@ public class homm extends Fragment {
 
 
 
-        final FloatingActionButton fab_body = (FloatingActionButton) view.findViewById(R.id.fab_body);
-        final FloatingActionButton fab_weight = (FloatingActionButton) view.findViewById(R.id.fab_weight);
+  /*      final FloatingActionButton fab_body = (FloatingActionButton) view.findViewById(R.id.fab_body);
+        final FloatingActionButton fab_weight = (FloatingActionButton) view.findViewById(R.id.fab_weight);*/
         final FloatingActionButton fab_add = (FloatingActionButton) view.findViewById(R.id.fab_add);
         final FloatingActionButton fab_post = (FloatingActionButton) view.findViewById(R.id.fab_new_post);
 
-        lyt_tape = view.findViewById(R.id.lyt_tape);
-        lyt_scale = view.findViewById(R.id.lyt_scale);
+       /* lyt_tape = view.findViewById(R.id.lyt_tape);
+        lyt_scale = view.findViewById(R.id.lyt_scale);*/
         lyt_post = view.findViewById(R.id.lyt_post);
-        ViewAnimation.initShowOut(lyt_tape);
-        ViewAnimation.initShowOut(lyt_scale);
+        /*ViewAnimation.initShowOut(lyt_tape);
+        ViewAnimation.initShowOut(lyt_scale);*/
         ViewAnimation.initShowOut(lyt_post);
         back_drop.setVisibility(View.GONE);
 
@@ -127,7 +127,7 @@ public class homm extends Fragment {
             }
         });
 
-        fab_body.setOnClickListener(new View.OnClickListener() {
+    /*    fab_body.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -141,7 +141,7 @@ public class homm extends Fragment {
 
 
             }
-        });
+        });*/
         fab_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,13 +156,13 @@ public class homm extends Fragment {
     private void toggleFabMode(View v) {
         rotate = ViewAnimation.rotateFab(v, !rotate);
         if (rotate) {
-            ViewAnimation.showIn(lyt_tape);
-            ViewAnimation.showIn(lyt_scale);
+           /* ViewAnimation.showIn(lyt_tape);
+            ViewAnimation.showIn(lyt_scale);*/
             ViewAnimation.showIn(lyt_post);
             back_drop.setVisibility(View.VISIBLE);
         } else {
-            ViewAnimation.showOut(lyt_tape);
-            ViewAnimation.showOut(lyt_scale);
+           /* ViewAnimation.showOut(lyt_tape);
+            ViewAnimation.showOut(lyt_scale);*/
             ViewAnimation.showOut(lyt_post);
             back_drop.setVisibility(View.GONE);
         }

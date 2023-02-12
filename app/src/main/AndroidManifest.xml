@@ -4,8 +4,9 @@
     package="com.odin.cfit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.STORAGE" />
@@ -22,8 +23,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".IntroActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".AddReminderActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
         <activity
             android:name=".progressUpdate"
             android:exported="false" />
@@ -59,19 +69,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login" />
         </activity>
-        <activity android:name=".workout" />
+        <!--
+<activity android:name=".com.odin.cfit.fragworkout" >
+
+        </activity>
+        -->
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <provider
-            android:authorities="com.odin.cfit"
             android:name=".data.AlarmReminderProvider"
-            android:exported="false"/>
+            android:authorities="com.odin.cfit"
+            android:exported="false" />
 
         <service
             android:name=".reminnder.ReminderAlarmService"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

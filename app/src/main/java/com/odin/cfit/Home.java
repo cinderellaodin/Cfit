@@ -130,8 +130,7 @@ public class Home extends AppCompatActivity
                 fragment = new progress_report();
                 break;
             case R.id.nav_workout:
-                finish();
-                startActivity(new Intent(this, workout.class));
+               fragment = new fragworkout();
                 break;
             case R.id.nav_food:
                 fragment = new diet();

@@ -37,9 +37,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Rello\Downloads\Black And White Minimalist Phone Wallpaper.png" />
+                                                <entry key="imagePath" value="C:\Users\Rello\Downloads\intro_bg.jpg" />
                                                 <entry key="opacityPercent" value="80" />
-                                                <entry key="paddingPercent" value="-5" />
+                                                <entry key="paddingPercent" value="-10" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -74,8 +74,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Rello\Downloads\Black And White Minimalist Phone Wallpaper.png" />
-                                      <entry key="outputName" value="splash_bg" />
+                                      <entry key="imageAsset" value="C:\Users\Rello\Downloads\intro_bg.jpg" />
+                                      <entry key="outputName" value="intro_bg" />
                                       <entry key="theme" value="HOLO_DARK" />
                                       <entry key="themeColor" value="a733e5" />
                                     </map>
@@ -116,7 +116,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Rello\Downloads\clean fitness\1.png" />
+                                                <entry key="imagePath" value="C:\Users\Rello\Downloads" />
                                                 <entry key="scalingPercent" value="65" />
                                               </map>
                                             </option>
@@ -359,7 +359,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/more_vert/baseline_more_vert_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/expand_more/baseline_expand_more_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -369,8 +369,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="fffcfc" />
-                            <entry key="outputName" value="ic_baseline_more_vert_24" />
+                            <entry key="color" value="fafafa" />
+                            <entry key="outputName" value="baseline_expand_more_24" />
                             <entry key="sourceFile" value="C:\Users\Rello\AndroidStudioProjects\AndroidProjects\pw\Cfit" />
                           </map>
                         </option>

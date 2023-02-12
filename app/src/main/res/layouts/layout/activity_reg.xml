@@ -18,7 +18,7 @@
         android:orientation="vertical"
         >
 
-    <androidx.appcompat.widget.AppCompatButton
+   <!-- <androidx.appcompat.widget.AppCompatButton
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -26,7 +26,11 @@
         android:textColor="#fff"
         android:text="Register with facebook"
         android:id="@+id/fbreg_btn"
-        />
+        />-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -170,13 +170,13 @@ public class AddReminderActivity extends AppCompatActivity implements
                 mTitleText.setText(savedTitle);
                 mTitle = savedTitle;
 
-                String savedTime = savedInstanceState.getString(KEY_TIME);
+                /*String savedTime = savedInstanceState.getString(KEY_TIME);
                 mTimeText.setText(savedTime);
                 mTime = savedTime;
 
                 String savedDate = savedInstanceState.getString(KEY_DATE);
                 mDateText.setText(savedDate);
-                mDate = savedDate;
+                mDate = savedDate;*/
 
                 String savedRepeat = savedInstanceState.getString(KEY_REPEAT);
                 mRepeatText.setText(savedRepeat);
@@ -205,23 +205,11 @@ public class AddReminderActivity extends AppCompatActivity implements
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Add reminder");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
 
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putCharSequence(KEY_TITLE, mTitleText.getText());
-        outState.putCharSequence(KEY_TIME, mTimeText.getText());
-        outState.putCharSequence(KEY_DATE, mDateText.getText());
-        outState.putCharSequence(KEY_REPEAT, mRepeatText.getText());
-        outState.putCharSequence(KEY_REPEAT_NO, mReapeatNoText.getText());
-        outState.putCharSequence(KEY_REPEAT_TYPE, mRepeatTextType.getText());
-        outState.putCharSequence(KEY_ACTIVE, mActive);
-    }
 
     public void setTime(View v){
         Calendar now = Calendar.getInstance();
@@ -261,9 +249,9 @@ public class AddReminderActivity extends AppCompatActivity implements
         mHour = hourOfDay;
         mMinute = minute;
         if (minute < 10){
-            mTime = hourOfDay + ":" + "0" + minute;
+            mTime = mHour + ":" + "0" + mMinute;
         } else{
-            mTime = hourOfDay + ":" + minute;
+            mTime = mHour + ":" + mMinute;
         }
         mTimeText.setText(mTime);
     }
@@ -288,6 +276,18 @@ public class AddReminderActivity extends AppCompatActivity implements
         mDateText.setText(mDate);
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putCharSequence(KEY_TITLE, mTitleText.getText());
+        outState.putCharSequence(KEY_TIME, mTimeText.getText());
+        outState.putCharSequence(KEY_DATE, mDateText.getText());
+        outState.putCharSequence(KEY_REPEAT, mRepeatText.getText());
+        outState.putCharSequence(KEY_REPEAT_NO, mReapeatNoText.getText());
+        outState.putCharSequence(KEY_REPEAT_TYPE, mRepeatTextType.getText());
+        outState.putCharSequence(KEY_ACTIVE, mActive);
+    }
 
     //on clicking the active button
     public void selectFab1(View v) {
