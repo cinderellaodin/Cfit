@@ -20,9 +20,16 @@
         <item>Imperial</item>
     </array>
 
-    <string name="enter_goalweight">goal weight in Kilograms (kg)</string>
-    <string name="enter_weight">current weight in kilograms (kg)</string>
-    <string name="enter_height">height in meters (m)</string>
+    <array name="food_type">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snack</item>
+    </array>
+
+    <string name="enter_goalweight">goal weight(kg)</string>
+    <string name="enter_weight">current weight(kg)</string>
+    <string name="enter_height">height(m)</string>
     <string name="upinfo">User Information</string>
     <string name="bmicalc">BMI Calculation</string>
     <string name="dob">Select Birth Date</string>
@@ -60,13 +67,13 @@
     <string name="add_camera_images">Camera</string>
     <string name="add_gallery_images">Gallery</string>
 
-    <string name="current_weight">current weight in kilograms (kg)</string>
-    <string name="_weight"> weight in kilograms (kg)</string>
-    <string name="current_waist">current waist measurement in inches</string>
-    <string name="current_chest">current Chest measurement in inches</string>
-    <string name="current_hip">current Hip measurement in inches</string>
-    <string name="current_thighs">current thigh measurement in inches</string>
-    <string name="current_arm">current Arm measurement in inches</string>
+    <string name="current_weight">current weight(kg)</string>
+    <string name="_weight"> weight(kg)</string>
+    <string name="current_waist">current waist(Inch)</string>
+    <string name="current_chest">current Chest(Inch)</string>
+    <string name="current_hip">current Hip(Inch)</string>
+    <string name="current_thighs">current thigh(Inch)</string>
+    <string name="current_arm">current Arm(Inch)</string>
     <string name="select_date">Select Date</string>
     <string name="remindme">Remind Me To:</string>
     <string name="remindtime">Time</string>
@@ -89,6 +96,7 @@
     <string name="diet_fragment">Click the Fab Button to calculate your required calorie to lose weight.</string>
     <string name="HIDE">Hide</string>
     <string name="foodDiet">You need to be in a Calorie Deficit to lose weight</string>
+    <string name="reqcalc">Required Calorie Calculator</string>
 
 
 </resources>

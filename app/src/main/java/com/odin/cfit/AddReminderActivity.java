@@ -170,13 +170,13 @@ public class AddReminderActivity extends AppCompatActivity implements
                 mTitleText.setText(savedTitle);
                 mTitle = savedTitle;
 
-                /*String savedTime = savedInstanceState.getString(KEY_TIME);
+                String savedTime = savedInstanceState.getString(KEY_TIME);
                 mTimeText.setText(savedTime);
                 mTime = savedTime;
 
                 String savedDate = savedInstanceState.getString(KEY_DATE);
                 mDateText.setText(savedDate);
-                mDate = savedDate;*/
+                mDate = savedDate;
 
                 String savedRepeat = savedInstanceState.getString(KEY_REPEAT);
                 mRepeatText.setText(savedRepeat);
@@ -218,15 +218,6 @@ public class AddReminderActivity extends AppCompatActivity implements
                 now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE),
                 false);
-
-     /* TimePickerDialog tpd = new TimePickerDialog(
-              this, null,
-              now.get(Calendar.HOUR_OF_DAY),
-              now.get(Calendar.MINUTE),
-              false
-      );
-        tpd.setThemeDark(false);
-       tpd.show(getFragmentManager(), "Timepickerdialog");*/
         tpd.show();
     }
 
@@ -239,7 +230,6 @@ public class AddReminderActivity extends AppCompatActivity implements
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
-     //  dpd.show(getFragmentManager(), "Datepickerdialog");
         dpd.show();
     }
 
@@ -255,16 +245,6 @@ public class AddReminderActivity extends AppCompatActivity implements
         }
         mTimeText.setText(mTime);
     }
-  /*  public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute ){
-        mHour = hourOfDay;
-        mMinute = minute;
-        if (minute < 10){
-            mTime = hourOfDay + ":" + "0" + minute;
-        } else{
-            mTime = hourOfDay + ":" + minute;
-        }
-        mTimeText.setText(mTime);
-    }*/
 
     //obtian date from date picker
     @Override

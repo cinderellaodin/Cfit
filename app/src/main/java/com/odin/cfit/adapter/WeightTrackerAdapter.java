@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.odin.cfit.R;
-import com.odin.cfit.WeighTracker;
+import com.odin.cfit.model.WeighTracker;
 
 
 import java.util.List;

@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +23,7 @@ import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.odin.cfit.adapter.AlarmCursorAdapter;
 import com.odin.cfit.data.AlarmReminderContract;
 import com.odin.cfit.data.AlarmReminderDbHelper;
 
@@ -36,7 +37,7 @@ AlarmCursorAdapter mCursorAdapter;
 AlarmReminderDbHelper alarmReminderDbHelper = new AlarmReminderDbHelper(getActivity());
 ListView reminderListView;
 ProgressDialog prgDialog;
-
+TextView reminderText;
 private static final int VEHICLE_LOADER = 0;
 
     @Override
@@ -50,6 +51,8 @@ private static final int VEHICLE_LOADER = 0;
         reminderListView = view.findViewById(R.id.list);
         View emptyView = view.findViewById(R.id.empty_view);
         reminderListView.setEmptyView(emptyView);
+
+        reminderText = view.findViewById(R.id.no_reminder_text);
 
         mCursorAdapter = new AlarmCursorAdapter(getActivity(), null);
         reminderListView.setAdapter(mCursorAdapter);
@@ -114,6 +117,11 @@ private static final int VEHICLE_LOADER = 0;
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         mCursorAdapter.swapCursor(data);
+        if (data.getCount() > 0){
+            reminderText.setVisibility(View.VISIBLE);
+        }else {
+            reminderText.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="@dimen/spacing_medium"
-    android:paddingBottom="@dimen/spacing_large"
+    android:padding="@dimen/spacing_large"
     >
 
     <TextView
@@ -15,14 +14,13 @@
         android:text="@string/bmicalc"
         android:textSize="20sp"
         android:textStyle="bold"
-android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         />
 
-   <!-- <ScrollView
+    <ScrollView
         android:layout_below="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
--->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -179,6 +177,6 @@ android:layout_gravity="center_horizontal"
 
         </LinearLayout>
 
-  <!--  </ScrollView>-->
+    </ScrollView>
 
 </LinearLayout>

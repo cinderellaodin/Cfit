@@ -116,145 +116,318 @@
                     android:paddingLeft="@dimen/spacing_large"
                     android:paddingRight="@dimen/spacing_large">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:gravity="center"
-                        android:text="Diet For Weight Loss"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textColor="@color/grey_80" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="@dimen/spacing_xmlarge"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="?attr/actionBarSize"
                         android:orientation="horizontal">
 
-                        <ImageButton
+                       <!-- <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/spacing_xmlarge"
                             android:background="@android:color/transparent"
-                            app:srcCompat="@drawable/ic_baseline_description_24"
-                            app:tint="@color/grey_40" />
+                            app:srcCompat="@drawable/baseline_info_24"
+                            app:tint="@color/purple_600" />-->
+                        <View
+                            android:layout_width="@dimen/spacing_middle"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/dietfrag_txt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAllCaps="true"
+                            android:textColor="@color/purple_600"
+                            android:text="Eating For Weightloss"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            />
+
+                        <ImageButton
+                            android:id="@+id/bt_toggle_text"
+                            android:layout_width="?attr/actionBarSize"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            app:srcCompat="@drawable/baseline_expand_more_24"
+                            app:tint="@color/grey_80" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lyt_expand_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_large"
+                            android:text="@string/foodDiet" />
+
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/grey_10" />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:gravity="end"
+                             android:orientation="horizontal">
+
+                             <Button
+                                 android:id="@+id/bt_hide_text"
+                                 style="@style/Widget.AppCompat.Button.Borderless"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:gravity="center"
+                                 android:text="@string/HIDE" />
+
+                         </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <TextView
+                android:id="@+id/tv_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                android:visibility="gone"
+                />
+
+<!--Diet Results -->
+         <LinearLayout
+             android:id="@+id/Lay_diet_results"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large">
+
+                        <RelativeLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                app:srcCompat="@drawable/reqcalorie"
+                                app:tint="@color/purple_800" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerInParent="true"
+                                app:srcCompat="@drawable/diett"
+                                app:tint="@android:color/white" />
+
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
                             android:layout_height="0dp" />
 
-                        <TextView
-                            android:id="@+id/dietfrag_txt"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/spacing_xmlarge"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/grey_40" />
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_calorie"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="92776"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                                android:textColor="@color/grey_60"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kcal"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_40" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_large" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_large"
-                android:layout_marginRight="@dimen/spacing_large"
-                android:background="@android:color/white"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/spacing_large"
-                    android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:gravity="center_vertical"
-                    android:minHeight="?attr/actionBarSize"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="@dimen/spacing_middle"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="About Eating For Weightloss"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/grey_80" />
-
-                    <ImageButton
-                        android:id="@+id/bt_toggle_text"
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        app:srcCompat="@drawable/baseline_expand_more_24"
-                        app:tint="@color/grey_80" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/lyt_expand_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/spacing_large"
-                        android:text="@string/foodDiet" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/grey_10" />
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:layout_weight="1"
+                    android:visibility="visible"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large">
 
-                        <Button
-                            android:id="@+id/bt_hide_text"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/HIDE" />
+                        <RelativeLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                app:srcCompat="@drawable/weight"
+                                app:tint="@color/purple_800" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="@dimen/spacing_middle"
+                            android:layout_height="0dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_weighttoLose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="92776"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                                android:textColor="@color/grey_60"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kg"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_40" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+             <View
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/spacing_large" />
+
+             <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/spacing_large"
+                 android:layout_marginRight="@dimen/spacing_large"
+                 android:background="@android:color/white"
+                 app:cardCornerRadius="2dp"
+                 app:cardElevation="2dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:paddingBottom="@dimen/spacing_large"
+                     android:paddingLeft="@dimen/spacing_large"
+                     android:paddingRight="@dimen/spacing_large">
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:minHeight="@dimen/spacing_xmlarge"
+                         android:orientation="horizontal">
+
+                         <!-- <ImageButton
+                              android:layout_width="wrap_content"
+                              android:layout_height="@dimen/spacing_xmlarge"
+                              android:background="@android:color/transparent"
+                              app:srcCompat="@drawable/baseline_info_24"
+                              app:tint="@color/purple_600" />
+
+                          <View
+                              android:layout_width="@dimen/spacing_medium"
+                              android:layout_height="0dp" />-->
+
+                         <TextView
+                             android:id="@+id/personaldiet_txt"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_weight="1"
+                             android:padding="@dimen/spacing_small"
+                             android:textAllCaps="true"
+                             android:textColor="@color/purple_600"
+                             android:layout_marginTop="@dimen/spacing_medium"
+                             android:text="Your Required Calories"
+                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                             />
+
+                     </LinearLayout>
+
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="@color/grey_10" />
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="@dimen/spacing_large"
+                             android:text="@string/foodDiet" />
 
 
-                </LinearLayout>
+                     </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                 </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_large" />
+             </androidx.cardview.widget.CardView>
+
+         </LinearLayout>
+
+
 
         </LinearLayout>
 
