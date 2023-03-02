@@ -214,7 +214,7 @@ public class AddReminderActivity extends AppCompatActivity implements
     public void setTime(View v){
         Calendar now = Calendar.getInstance();
 
-        TimePickerDialog tpd = new TimePickerDialog(this, null,
+        TimePickerDialog tpd = new TimePickerDialog(this, this,
                 now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE),
                 false);
@@ -225,7 +225,7 @@ public class AddReminderActivity extends AppCompatActivity implements
     public void setDate(View v){
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = new DatePickerDialog(
-                this, null,
+                this, this,
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
