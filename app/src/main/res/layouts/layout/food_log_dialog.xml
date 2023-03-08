@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -30,24 +31,13 @@
             android:layout_margin="15dp"
             android:entries="@array/food_type"
             android:imeOptions="actionNext"
-            android:padding="@dimen/spacing_large"
-
-            />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+            android:padding="@dimen/spacing_large" />
 
                 <EditText
-                    android:id="@+id/etweight"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:inputType="textImeMultiLine"
-                    android:imeOptions="actionNext"
-                    android:hint="Food" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:id="@+id/etfood"
+                    android:layout_margin="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,19 +47,37 @@
         android:padding="10dp"
         android:gravity="center"
         >
-        <Spinner
-            android:id="@+id/spDate"
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            />
+            android:src="@drawable/baseline_date_range_24"
+            app:tint="@color/purple_800" />
 
-        <Spinner
-            android:id="@+id/spTime"
+        <TextView
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            />
+            android:clickable="true"
+            android:text="26/2/2023"
+            android:focusable="true" />
+
+        <View
+            android:layout_width="@dimen/spacing_large"
+            android:layout_height="@dimen/spacing_large" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_access_time_24"
+            app:tint="@color/purple_800" />
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="07:30"
+            android:focusable="true" />
+
 
     </LinearLayout>
 
