@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.odin.cfit.model.FoodDiary;
 import com.odin.cfit.model.UserReqCalorie;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 /*import android.support.v4.app.Fragment;*/
@@ -199,6 +200,13 @@ public class diet extends Fragment{
         converted_weight = goal_weight * 2.2;
         required_Calories = converted_weight * 12;
 
+        // Round to 2 decimal places
+        DecimalFormat deciFormat = new DecimalFormat();
+        deciFormat.setMaximumFractionDigits(2);
+        String requiredCalories2Dec = deciFormat.format(required_Calories);
+
+        // convert back to double
+        required_Calories = Double.parseDouble(requiredCalories2Dec);
 
 
         Toast.makeText(getActivity(), converted_weight + " " + required_Calories + " " +"Calculate calories", Toast.LENGTH_SHORT).show();
