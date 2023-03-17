@@ -1,7 +1,9 @@
 package com.odin.cfit;
 
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,15 +35,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.odin.cfit.model.FoodDiary;
 import com.odin.cfit.model.UserReqCalorie;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.util.Calendar;
 
 /*import android.support.v4.app.Fragment;*/
 
 
-public class diet extends Fragment {
+public class diet extends Fragment{
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     FirebaseUser fUser;
@@ -45,8 +52,15 @@ public class diet extends Fragment {
      Button bt_hide_text;
      View lyt_expand_text, lyt_diet_results;
      double required_Calories, converted_weight, uRequCal, weight_diff, uWeight_diff;
-    EditText etweight, etgweight;
+    EditText etweight, etgweight, etFood;
     //DecimalFormat df = new DecimalFormat("0.00");
+
+    Spinner spinneFoodType;
+    int day, month, year, hour, minute;
+    Calendar calendar;
+    DatePickerDialog datePickerDialog;
+    TimePickerDialog timePickerDialog;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -133,7 +147,7 @@ public class diet extends Fragment {
         }
     }
 
-
+//required Calories
     private void calculateRequiredCalories() {
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.required_cal_dialog);
@@ -230,7 +244,106 @@ public class diet extends Fragment {
    }
 
     public void logFood(){
+        ArrayAdapter<CharSequence> adapter;
+        final Dialog FLogdialog = new Dialog(getContext());
+        FLogdialog.setContentView(R.layout.food_log_dialog);
+        FLogdialog.setCancelable(true);
 
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(FLogdialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        spinneFoodType = (Spinner) FLogdialog.findViewById(R.id.spinnerFoodType);
+
+        etFood = (EditText) FLogdialog.findViewById(R.id.etfood);
+
+        final TextView tvDate = (TextView) FLogdialog.findViewById(R.id.tvDate);
+        final TextView tvTime = (TextView) FLogdialog.findViewById(R.id.tvTime);
+        final Button btncancle = (Button) FLogdialog.findViewById(R.id.btncancle);
+        final Button btnsaveinfo = (Button) FLogdialog.findViewById(R.id.btnsaveinfo);
+
+        adapter = ArrayAdapter.createFromResource(getContext(), R.array.food_type, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinneFoodType.setAdapter(adapter);
+        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
+
+        tvDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        String tdate = String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(dayOfMonth);
+                        tvDate.setText(tdate);
+
+
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+
+            }
+        });
+
+        tvTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                       tvTime.setText(hourOfDay + ":" + minute);
+                        }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
+
+
+        //buttons
+        btncancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FLogdialog.dismiss();
+            }
+        });
+
+        btnsaveinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                calc_required_calorie( Double.parseDouble(etweight.getText().toString().trim()),
+                        Double.parseDouble(etgweight.getText().toString().trim()));
+                food_diary_entry(
+                        spinneFoodType.getSelectedItem().toString().trim(),
+                        etFood.getText().toString().trim(),
+                        tvDate.getText().toString().trim(),
+                        tvTime.getText().toString().trim()
+
+                );
+                /*
+                etweight.setText("");
+                etgweight.setText("");*/
+
+                FLogdialog.dismiss();
+            }
+        });
+        // show it
+        FLogdialog.show();
+        FLogdialog.getWindow().setAttributes(lp);
+    }
+
+
+
+    public void food_diary_entry(String foodType, String foodDetails, String tvDate, String tvTime){
+
+        FoodDiary foodDiary = new FoodDiary(foodType, foodDetails, tvDate, tvTime);
+        String uploadCId = databaseReference.push().getKey();
+        databaseReference.child(fUser.getUid()).child("Food Diary").child(uploadCId).setValue(foodDiary);
     }
 
     /*menu Selection*/
@@ -255,7 +368,12 @@ public class diet extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_diet, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_diet, container, false);
+
+        spinneFoodType = rootView.findViewById(R.id.spinnerFoodType);
+
+        return rootView;
     }
+
 
 }
