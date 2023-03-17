@@ -29,6 +29,7 @@
         <activity
             android:name=".AddReminderActivity"
             android:exported="false"
+            android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -84,8 +85,21 @@
             android:authorities="com.odin.cfit"
             android:exported="false" />
 
+        <receiver
+            android:name=".reminder.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".reminder.AlarmReminderReceiver"
+            android:enabled="true"/>
+
         <service
-            android:name=".reminnder.ReminderAlarmService"
+            android:name=".reminder.ReminderAlarmService"
             android:exported="false" />
     </application>
 

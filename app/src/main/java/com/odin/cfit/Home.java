@@ -1,7 +1,10 @@
 package com.odin.cfit;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -22,6 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.mikhaellopez.circularimageview.CircularImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +42,7 @@ public class Home extends AppCompatActivity
 
     String uid, uname;
     CircularImageView cImageView;
+    private static final int REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +97,7 @@ public class Home extends AppCompatActivity
         email.setText(user.getEmail());
         name.setText(uname);
 
+
         try {
             if (photoUrl == null) {
                 cImageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
@@ -100,6 +109,18 @@ public class Home extends AppCompatActivity
             }
         } catch (Exception ex) {
             Log.e("Error here", ex.getMessage());
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            String[] requiredPermissions = {Manifest.permission.POST_NOTIFICATIONS};
+            ActivityCompat.requestPermissions(this, requiredPermissions, REQUEST_CODE);
         }
     }
 
@@ -136,7 +157,7 @@ public class Home extends AppCompatActivity
                 fragment = new diet();
                 break;
             case R.id.nav_reminder:
-                fragment = new reminder();
+                fragment = new ReminderFragment();
                 break;
         }
         if (fragment != null) {

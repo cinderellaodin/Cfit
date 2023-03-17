@@ -97,6 +97,8 @@
     <string name="HIDE">Hide</string>
     <string name="foodDiet">You need to be in a Calorie Deficit to lose weight</string>
     <string name="reqcalc">Required Calorie Calculator</string>
+    <string name="text_alarm_reminder_channel_title">Alarm Reminders</string>
+    <string name="text_alarm_reminder_channel_desc">Displays your Alarm Reminders.</string>
 
 
 </resources>
