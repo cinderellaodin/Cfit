@@ -274,7 +274,7 @@ public class diet extends Fragment{
         adapter = ArrayAdapter.createFromResource(getContext(), R.array.food_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinneFoodType.setAdapter(adapter);
-        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
+//        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
 
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
