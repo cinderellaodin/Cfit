@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -310,6 +311,27 @@ public class progress_report extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        mwtrackerAdapter.setOnItemClickListener(new WeightTrackerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                final String selectedKey;
+
+                WeighTracker selected = mWeighTracker.get(position);
+                selectedKey = selected.getKey();
+
+                databaseReference.child(user.getUid()).child("Weight Tracker").child(selectedKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        Toast.makeText(getContext(),"Item Deleted" , Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                mwtrackerAdapter.notifyDataSetChanged();
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });

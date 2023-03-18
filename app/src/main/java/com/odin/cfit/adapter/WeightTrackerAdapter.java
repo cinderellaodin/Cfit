@@ -62,6 +62,8 @@ public class WeightTrackerAdapter extends RecyclerView.Adapter<WeightTrackerAdap
             WeightTitle = itemView.findViewById(R.id.weightText);
             loggedDate = itemView.findViewById(R.id.loggedDate);
 
+            itemView.setOnClickListener(this);
+
         }
 
         @Override
@@ -79,7 +81,7 @@ public class WeightTrackerAdapter extends RecyclerView.Adapter<WeightTrackerAdap
         }
     }
 
-    public void setOnItemClickListener(FitNewsAdapter.OnItemClickListener listener){
+    public void setOnItemClickListener(WeightTrackerAdapter.OnItemClickListener listener){
         mListener = (OnItemClickListener) listener;
     }
 
