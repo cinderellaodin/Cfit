@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.odin.cfit.model.FoodDiary;
 import com.odin.cfit.model.UserReqCalorie;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 /*import android.support.v4.app.Fragment;*/
@@ -51,7 +53,8 @@ public class diet extends Fragment{
      ImageButton bt_toggle_text;
      Button bt_hide_text;
      View lyt_expand_text, lyt_diet_results;
-     double required_Calories, converted_weight, uRequCal, weight_diff, uWeight_diff;
+     double required_Calories, converted_weight, weight_diff;
+     String uRequCal, uWeight_diff;
     EditText etweight, etgweight, etFood;
     //DecimalFormat df = new DecimalFormat("0.00");
 
@@ -60,6 +63,8 @@ public class diet extends Fragment{
     Calendar calendar;
     DatePickerDialog datePickerDialog;
     TimePickerDialog timePickerDialog;
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -102,6 +107,7 @@ public class diet extends Fragment{
 
         initComponent();
         retieveData();
+
     }
 
 
@@ -199,11 +205,21 @@ public class diet extends Fragment{
         converted_weight = goal_weight * 2.2;
         required_Calories = converted_weight * 12;
 
+        // Round to 2 decimal places
+        DecimalFormat deciFormat = new DecimalFormat();
+        deciFormat.setMaximumFractionDigits(2);
+        String requiredCalories2Dec = deciFormat.format(required_Calories);
+        String Wdiff = deciFormat.format(weight_diff);
+
+        // convert back to double
+       // required_Calories = Double.parseDouble(requiredCalories2Dec);
+      //String req_Calories = requiredCalories2Dec;
 
 
-        Toast.makeText(getActivity(), converted_weight + " " + required_Calories + " " +"Calculate calories", Toast.LENGTH_SHORT).show();
 
-        UserReqCalorie userReqCalorie = new UserReqCalorie(required_Calories, weight_diff);
+        Toast.makeText(getActivity(), Wdiff + " " + requiredCalories2Dec + " " +"Calculate calories", Toast.LENGTH_SHORT).show();
+
+        UserReqCalorie userReqCalorie = new UserReqCalorie(requiredCalories2Dec, Wdiff);
         //firebase
         databaseReference.child("Required Calories").setValue(userReqCalorie);
     }
@@ -266,7 +282,7 @@ public class diet extends Fragment{
         adapter = ArrayAdapter.createFromResource(getContext(), R.array.food_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinneFoodType.setAdapter(adapter);
-        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
+//        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
 
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -337,8 +353,6 @@ public class diet extends Fragment{
         FLogdialog.getWindow().setAttributes(lp);
     }
 
-
-
     public void food_diary_entry(String foodType, String foodDetails, String tvDate, String tvTime){
 
         FoodDiary foodDiary = new FoodDiary(foodType, foodDetails, tvDate, tvTime);
@@ -370,10 +384,9 @@ public class diet extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        spinneFoodType = rootView.findViewById(R.id.spinnerFoodType);
-
         return rootView;
     }
+
 
 
 }

@@ -40,6 +40,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import lecho.lib.hellocharts.gesture.ContainerScrollType;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
 /*import android.support.v4.app.Fragment;*/
@@ -73,6 +76,9 @@ public class progress_report extends Fragment {
     int day, month, year, yearfinal;
     Calendar calendar;
     DatePickerDialog datePickerDialog;
+    LineChartView lineChartView;
+    private ArrayList<Object> pointValueList;
+    private ArrayList<Object> linesList;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -119,8 +125,8 @@ public class progress_report extends Fragment {
         });*/
 
         //line chart
-      LineChartView lineChartView = view.findViewById(R.id.chart);
-
+       lineChartView = view.findViewById(R.id.chart);
+       initView(lineChartView);
 
 
         /*for fab menu*/
@@ -188,6 +194,14 @@ public class progress_report extends Fragment {
 
             }
         });
+
+    }
+
+    private void initView(LineChartView lineChartView) {
+
+        pointValueList = new ArrayList<>();
+        linesList = new ArrayList<>();
+
 
     }
 
@@ -335,6 +349,8 @@ public class progress_report extends Fragment {
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
+
+
 
     }
 
