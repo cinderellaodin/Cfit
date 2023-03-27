@@ -55,14 +55,10 @@ public class diet extends Fragment{
      View lyt_expand_text, lyt_diet_results;
      double required_Calories, converted_weight, weight_diff;
      String uRequCal, uWeight_diff;
-    EditText etweight, etgweight, etFood;
+    EditText etweight, etgweight;
     //DecimalFormat df = new DecimalFormat("0.00");
 
-    Spinner spinneFoodType;
-    int day, month, year, hour, minute;
-    Calendar calendar;
-    DatePickerDialog datePickerDialog;
-    TimePickerDialog timePickerDialog;
+
 
 
 
@@ -83,8 +79,6 @@ public class diet extends Fragment{
         //database reference
         databaseReference = FirebaseDatabase.getInstance().getReference(fUser.getUid());
 
-
-       // df.setRoundingMode(RoundingMode.UP);
 
         bt_toggle_text = (ImageButton) view.findViewById(R.id.bt_toggle_text);
         bt_hide_text = (Button) view.findViewById(R.id.bt_hide_text);
@@ -259,107 +253,6 @@ public class diet extends Fragment{
 
    }
 
-    public void logFood(){
-        ArrayAdapter<CharSequence> adapter;
-        final Dialog FLogdialog = new Dialog(getContext());
-        FLogdialog.setContentView(R.layout.food_log_dialog);
-        FLogdialog.setCancelable(true);
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(FLogdialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-
-        spinneFoodType = (Spinner) FLogdialog.findViewById(R.id.spinnerFoodType);
-
-        etFood = (EditText) FLogdialog.findViewById(R.id.etfood);
-
-        final TextView tvDate = (TextView) FLogdialog.findViewById(R.id.tvDate);
-        final TextView tvTime = (TextView) FLogdialog.findViewById(R.id.tvTime);
-        final Button btncancle = (Button) FLogdialog.findViewById(R.id.btncancle);
-        final Button btnsaveinfo = (Button) FLogdialog.findViewById(R.id.btnsaveinfo);
-
-        adapter = ArrayAdapter.createFromResource(getContext(), R.array.food_type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinneFoodType.setAdapter(adapter);
-//        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
-
-        tvDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calendar = Calendar.getInstance();
-                year = calendar.get(Calendar.YEAR);
-                month = calendar.get(Calendar.MONTH);
-                day = calendar.get(Calendar.DAY_OF_MONTH);
-
-                datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String tdate = String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(dayOfMonth);
-                        tvDate.setText(tdate);
-
-
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-
-            }
-        });
-
-        tvTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                       tvTime.setText(hourOfDay + ":" + minute);
-                        }
-                }, hour, minute, true);
-                timePickerDialog.show();
-            }
-        });
-
-
-        //buttons
-        btncancle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FLogdialog.dismiss();
-            }
-        });
-
-        btnsaveinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                calc_required_calorie( Double.parseDouble(etweight.getText().toString().trim()),
-                        Double.parseDouble(etgweight.getText().toString().trim()));
-                food_diary_entry(
-                        spinneFoodType.getSelectedItem().toString().trim(),
-                        etFood.getText().toString().trim(),
-                        tvDate.getText().toString().trim(),
-                        tvTime.getText().toString().trim()
-
-                );
-                /*
-                etweight.setText("");
-                etgweight.setText("");*/
-
-                FLogdialog.dismiss();
-            }
-        });
-        // show it
-        FLogdialog.show();
-        FLogdialog.getWindow().setAttributes(lp);
-    }
-
-    public void food_diary_entry(String foodType, String foodDetails, String tvDate, String tvTime){
-
-        FoodDiary foodDiary = new FoodDiary(foodType, foodDetails, tvDate, tvTime);
-        String uploadCId = databaseReference.push().getKey();
-        databaseReference.child(fUser.getUid()).child("Food Diary").child(uploadCId).setValue(foodDiary);
-    }
-
     /*menu Selection*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -373,7 +266,11 @@ public class diet extends Fragment{
         if (id == R.id.action_calculate) {
             calculateRequiredCalories();
         } else if (id == R.id.action_Logfood){
-            logFood();
+           // logFood();
+            //starting home activity
+            getContext();
+            startActivity(new Intent(getContext(), FoodLogActivity.class));
+
         }
         return super.onOptionsItemSelected(item);
     }

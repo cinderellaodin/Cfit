@@ -27,6 +27,13 @@
         <item>Snack</item>
     </array>
 
+    <!--workout plan care-->
+    <string name="reps">Reps</string>
+    <string name="sets">Sets</string>
+    <string name="rest">Rest</string>
+    <string name="duration">Duration</string>
+
+
     <string name="enter_goalweight">goal weight(kg)</string>
     <string name="enter_weight">current weight(kg)</string>
     <string name="enter_height">height(m)</string>
@@ -99,6 +106,10 @@
     <string name="reqcalc">Required Calorie Calculator</string>
     <string name="text_alarm_reminder_channel_title">Alarm Reminders</string>
     <string name="text_alarm_reminder_channel_desc">Displays your Alarm Reminders.</string>
+    <string name="pname">New Workout Plan</string>
+    <string name="enter_pname">Enter New Plan Name</string>
+    <string name="click">you have to enter values in the calculator to determine how long it will take.</string>
+    <string name="wp">Workout Plan</string>
 
 
 </resources>

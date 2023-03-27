@@ -198,7 +198,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_large" />
+                android:layout_height="@dimen/spacing_middle" />
 
             <TextView
                 android:id="@+id/tv_guide"
@@ -244,18 +244,12 @@
                             android:layout_height="40dp">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
                                 android:layout_centerInParent="true"
                                 app:srcCompat="@drawable/reqcalorie"
                                 app:tint="@color/purple_800" />
 
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/diett"
-                                app:tint="@android:color/white" />
 
                         </RelativeLayout>
 
@@ -310,8 +304,8 @@
                             android:layout_height="40dp">
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
                                 android:layout_centerInParent="true"
                                 app:srcCompat="@drawable/weight"
                                 app:tint="@color/purple_800" />

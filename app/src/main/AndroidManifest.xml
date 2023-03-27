@@ -23,9 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".WeightSimulatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodLogActivity"
+            android:exported="false" />
+        <activity
             android:name=".IntroActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddReminderActivity"
             android:exported="false"
@@ -46,6 +52,9 @@
             android:exported="false" />
         <activity
             android:name=".EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".workout"
             android:exported="false" />
         <activity
             android:name=".splash"
@@ -94,9 +103,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".reminder.AlarmReminderReceiver"
-            android:enabled="true"/>
+        <receiver
+            android:name=".reminder.AlarmReminderReceiver"
+            android:enabled="true" />
 
         <service
             android:name=".reminder.ReminderAlarmService"

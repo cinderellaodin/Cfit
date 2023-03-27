@@ -17,14 +17,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.Exclude;
 
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     Button fblogin_btn, login_btn;
     EditText etEmail, etPassword;
     TextView tvfpwd, tvreg;
-    private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
+    public ProgressDialog progressDialog;
+    public FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         tvfpwd.setOnClickListener(this);
         tvreg.setOnClickListener(this);
     }
-    private void userLogin() {
+    public void userLogin() {
         //gettting the values
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
@@ -109,4 +110,5 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             startActivity(new Intent(this, reg.class));
         }
     }
+
 }

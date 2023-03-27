@@ -38,6 +38,7 @@ import com.odin.cfit.model.BodyMeasurement;
 import com.odin.cfit.model.Goals;
 import com.odin.cfit.model.UserInformation;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class BodyInformation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -61,7 +62,8 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
 
     double selectedValue;
     double[] values = {+5, -161};
-    double height, weight, gweight, age, bmi, dailycal, weightforecast,ugoalcal, ubodysize, udressgoal, uweekgoal, bmr, uheight, uweight, ugweight,
+    double height, weight, gweight, age, bmi, dailycal, weightforecast, ugoalcal, ubodysize,
+            udressgoal, uweekgoal, bmr, uheight, uweight, ugweight,
     uchest, uarms, uwaist, ushoulder, uhip, ucalf, uthighs, uneck, uwrist;
 
     String msg = "";
@@ -76,6 +78,12 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
     String uid;
     String temp;
     DatePickerDialog datePickerDialog;
+
+    double calDiff, lbsWeight, lbsweight_diff, rbmi, wfWeek, wfMonth;
+    String ugoalcalS, weightforecastS;
+    DecimalFormat deciFormat;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,8 +144,11 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         tvbmicon = findViewById(R.id.bmicondition);
         tvdailycal = findViewById(R.id.dailycalorie);
         tvgoalcal = findViewById(R.id.goalcalorie);
-
         forecastTv = findViewById(R.id.tvforecast);
+
+        // Round to 2 decimal places
+         deciFormat = new DecimalFormat();
+        deciFormat.setMaximumFractionDigits(2);
 
         retrieveData();
         retrieveBodyData();
@@ -164,10 +175,11 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
                         ubmi = userInformation.getBmi();
                         ubmicon = userInformation.getCondition();
                         udailycal = userInformation.getDailycalories();
+                        ugoalcalS = userInformation.getUcaloriegoals();
+                        weightforecastS = userInformation.getWeightforecasts();
+                        String ftv = userInformation.getWeightforecasts();
 
-
-
-                       // tvemail.setText(ubmicon);
+                                // tvemail.setText(ubmicon);
                        /* tvgender.setText(ugender);
                         tvage.setText(agee);
                         tvdob.setText(udob);*/
@@ -175,6 +187,7 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
                         tvbmi.setText(ubmi);
                         tvbmicon.setText(ubmicon);
                         tvdailycal.setText(udailycal);
+                        tvgoalcal.setText(ugoalcalS);
 
 
                         tvheight.setText(String.valueOf(uheight));
@@ -183,7 +196,7 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
                         tvactivity.setText(uactivity);
 
                         forecastTv.setText("With the information provided, with " +
-                                "losing 1kg per week, you'll reach your goal weight on or during the period of 4days");
+                                "losing 1kg per week, you'll reach your goal weight on or during the period of " + weightforecastS);
 
                     } catch (Exception e) {
                         Toast.makeText(BodyInformation.this, ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -413,6 +426,7 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         spinnerMunits.setAdapter(adapter);
         spinnerMunits.setOnItemSelectedListener(this);
 */
+
         /*gender*/
         adapter = ArrayAdapter.createFromResource(this, R.array.gender_name, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -464,7 +478,9 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
                 datePickerDialog = new DatePickerDialog(BodyInformation.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String tdate = String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(dayOfMonth);
+
+                        int mont = month +1;
+                        String tdate = String.valueOf(year) + "/" + String.valueOf(mont) + "/" + String.valueOf(dayOfMonth);
                         etdob.setText(tdate);
 
                         int yeardiff = yearfinal - year;
@@ -500,6 +516,8 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
                         ubmi,
                         ubmicon,
                         udailycal,
+                        ugoalcalS,
+                        weightforecastS,
                         Double.parseDouble(etheight.getText().toString().trim()),
                         Double.parseDouble(etweight.getText().toString().trim()),
                         Double.parseDouble(etgweight.getText().toString().trim())
@@ -523,18 +541,40 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         gweight = Double.parseDouble(etgweight.getText().toString());
         height = Double.parseDouble(etheight.getText().toString());
 
+
+        // String covntBmi = deciFormat.format(rbmi);
+
+        //calculate required goal calories
+        ugoalcal = 12 * gweight;
+        ugoalcalS = deciFormat.format(ugoalcal);
+
+        //calorie difference
+         calDiff = 3500 - ugoalcal;
+
+        //weightforecast
+         lbsWeight = weight * 2.2 - gweight * 2.2;
+         lbsweight_diff = lbsWeight * 3500;
+
+
+       //( lbsweight_diff calories/pounds)
+        weightforecast = lbsweight_diff / calDiff;
+         wfWeek = weightforecast / 7;
+         wfMonth = wfWeek/4;
+        weightforecastS = String.valueOf(deciFormat.format(weightforecast)) + " Days" + String.valueOf(deciFormat.format(wfWeek)) + " Weeks";
+
+        //BMI
         bmi = height / 100 * height / 100;
-        bmi = weight / bmi;
+        rbmi = weight / bmi;
 
         //tvbmi.setText(String.valueOf(bmi));
-        ubmi = String.valueOf(bmi);
-        if (bmi <= 18.5) {
+        ubmi = String.valueOf(deciFormat.format(rbmi));
+        if (rbmi <= 18.5) {
             msg = "Underweight :(";
-        } else if (bmi >= 18.5 && bmi <= 24.9) {
+        } else if (rbmi >= 18.5 && rbmi <= 24.9) {
             msg = "Normal weight:)";
-        } else if (bmi >= 25 && bmi <= 29.9) {
+        } else if (rbmi >= 25 && rbmi <= 29.9) {
             msg = "Overweight:(";
-        } else if (bmi >= 30) {
+        } else if (rbmi >= 30) {
             msg = "Obese :(";
         }
         ubmicon = msg;
@@ -546,13 +586,15 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         dailycal = bmr * (ratingvalue);
 
       //  tvdailycal.setText(String.valueOf("Your reqired daily calorie is:" + " " + dailycal));
-        udailycal = String.valueOf("Your reqired daily calorie is:" + " " + dailycal);
+        udailycal = String.valueOf("Your reqired daily calorie is:" + " " + deciFormat.format(dailycal));
+
     }
 
 
-    private void saveUserInformation(String gender, String age, String dob, String activity, String bmi, String condition, String dailycalories, double height, double weight, double goalweight) {
+    private void saveUserInformation(String gender, String age, String dob, String activity, String bmi, String condition, String dailycalories,
+                                     String ugoalcalS, String weightforecastS, double height, double weight, double goalweight) {
 
-        UserInformation userInformation = new UserInformation(gender, age, dob, activity, bmi, condition, dailycalories, height, weight,
+        UserInformation userInformation = new UserInformation(gender, age, dob, activity, bmi, condition, dailycalories, ugoalcalS, weightforecastS, height, weight,
                 goalweight);
 
        // FirebaseUser user = firebaseAuth.getCurrentUser();

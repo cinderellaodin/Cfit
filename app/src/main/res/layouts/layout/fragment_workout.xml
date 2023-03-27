@@ -87,12 +87,13 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="514dp"
         android:layout_marginTop="-35dp"
         android:clipToPadding="false"
         android:scrollbars="none"
         android:scrollingCache="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,9 +113,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="@dimen/spacing_large"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_large">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -153,8 +154,6 @@
                     </LinearLayout>
 
 
-
-
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -163,7 +162,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_large" />
 
-            <androidx.cardview.widget.CardView
+            <TextView
+                android:id="@+id/tv_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:visibility="gone" />
+
+            <!-- <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_large"
@@ -176,9 +183,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="@dimen/spacing_large"
                     android:paddingLeft="@dimen/spacing_large"
-                    android:paddingRight="@dimen/spacing_large">
+                    android:paddingRight="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_large">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -198,15 +205,41 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_large" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_workoutPlans"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/spacing_large"
+                android:scrollbars="vertical"
+                android:scrollingCache="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
         </LinearLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/fab_workout_plan"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/spacing_smlarge"
+          android:layout_marginTop="@dimen/spacing_middle"
+          android:layout_marginRight="@dimen/spacing_smlarge"
+          android:layout_marginBottom="@dimen/spacing_middle"
+          android:clickable="true"
+          android:tint="@android:color/white"
+          android:layout_gravity="end|bottom"
+          app:backgroundTint="@color/purple_600"
+          app:rippleColor="@android:color/black"
+          app:srcCompat="@drawable/fitness" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

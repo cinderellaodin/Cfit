@@ -1,8 +1,10 @@
 package com.odin.cfit.model;
 
+import com.google.firebase.database.Exclude;
+
 public class FoodDiary {
     String foodtype, fooddetails, entrydate, entrytime;
-
+    public String key;
 
     public FoodDiary() {
     }
@@ -45,4 +47,16 @@ public class FoodDiary {
     public void setEntrytime(String entrytime) {
         this.entrytime = entrytime;
     }
+
+
+    @Exclude
+    public String getKey() {
+        return key;
+    }
+
+    @Exclude
+    public void setKey(String key) {
+        this.key = key;
+    }
+
 }

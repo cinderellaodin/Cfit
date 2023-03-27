@@ -308,7 +308,7 @@ public class progress_report extends Fragment {
                     weights.setKey(ds.getKey());
                     mWeighTracker.add(weights);
                     if (mWeighTracker.size()<=0) {
-                        Toast.makeText(getActivity(), "No Posts yet\n be sure to post some fashion trends", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No weights logged yet\n be sure to log your weight", Toast.LENGTH_SHORT).show();
 
                     }else{
                         recyclerView.setAdapter(mwtrackerAdapter);
