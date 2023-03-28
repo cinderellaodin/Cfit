@@ -110,6 +110,7 @@
     <string name="enter_pname">Enter New Plan Name</string>
     <string name="click">you have to enter values in the calculator to determine how long it will take.</string>
     <string name="wp">Workout Plan</string>
+    <string name="savefood">Save</string>
 
 
 </resources>

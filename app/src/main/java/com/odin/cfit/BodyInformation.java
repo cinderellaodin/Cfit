@@ -288,6 +288,10 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         }else if (id == R.id.update_goals){
           //  Toast.makeText(this, "Update goals", Toast.LENGTH_SHORT).show();
             updatgoals();
+        }else if (id == R.id.weight_simulator){
+            //  Toast.makeText(this, "Update goals", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, WeightSimulatorActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

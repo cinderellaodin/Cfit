@@ -1,16 +1,13 @@
 package com.odin.cfit;
 
-import static android.icu.lang.UProperty.NAME;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import androidx.annotation.ContentView;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
@@ -25,7 +22,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class FoodLogActivityTest {
     @Rule
-    ActivityScenario activityScenario = ActivityScenario.launch(FoodLogActivity.class);
+    ActivityScenario<FoodLogActivity> activityScenario = ActivityScenario.launch(FoodLogActivity.class);
     String expectedFoodName ="lunch";
 
 
@@ -36,10 +33,9 @@ public class FoodLogActivityTest {
 
         // Execute and Verify
         Espresso.onView(withId(R.id.btnsaveinfo)).perform(click());
-
         Espresso.onView(withId(R.id.etfood));
 
-        //onView(withText(R.string.text_ok)).perform(click())
+        Espresso.onView(withText(R.string.savefood)).perform(click());
 
         // make sure dialog is still visible (can't click ok without entering a name)
         Espresso.onView(withId(R.id.etfood)).check(matches(isDisplayed()));
@@ -66,7 +62,7 @@ public class FoodLogActivityTest {
                 .perform(typeText(expectedFoodName));
 
         // click OK button
-        Espresso.onView(withText("OK"))
+        Espresso.onView(withText("Save"))
                 .inRoot(isDialog())
                 .perform(click());
 

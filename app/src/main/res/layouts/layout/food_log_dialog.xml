@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:background="@color/purple_300"
-                    android:text="Save"
+                    android:text="@string/savefood"
                     android:textColor="@color/colorBtnsm" />
             </LinearLayout>
 
