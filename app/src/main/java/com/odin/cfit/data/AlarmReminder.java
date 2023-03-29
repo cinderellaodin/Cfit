@@ -18,7 +18,7 @@ public class AlarmReminder implements Parcelable {
 
     @PrimaryKey
     @NonNull
-    public Integer id;
+    public String id;
     public String title;
     public Date time;
     public Boolean repeat;
@@ -26,11 +26,11 @@ public class AlarmReminder implements Parcelable {
     public RepeatType repeatType;
     public Boolean active;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public AlarmReminder setId(Integer id) {
+    public AlarmReminder setId(String id) {
         this.id = id;
         return this;
     }
@@ -126,7 +126,7 @@ public class AlarmReminder implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeString(this.id);
         dest.writeString(this.title);
         dest.writeLong(this.time != null ? this.time.getTime() : -1);
         dest.writeValue(this.repeat);
@@ -136,7 +136,7 @@ public class AlarmReminder implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
-        this.id = source.readInt();
+        this.id = source.readString();
         this.title = source.readString();
         long tmpTime = source.readLong();
         this.time = tmpTime == -1 ? null : new Date(tmpTime);
@@ -151,7 +151,7 @@ public class AlarmReminder implements Parcelable {
     }
 
     protected AlarmReminder(Parcel in) {
-        this.id = in.readInt();
+        this.id = in.readString();
         this.title = in.readString();
         long tmpTime = in.readLong();
         this.time = tmpTime == -1 ? null : new Date(tmpTime);

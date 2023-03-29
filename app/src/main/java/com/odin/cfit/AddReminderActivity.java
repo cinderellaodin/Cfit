@@ -37,6 +37,7 @@ import com.odin.cfit.reminder.AlarmReminderScheduler;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -511,6 +512,7 @@ public class AddReminderActivity extends AppCompatActivity implements
                     }).observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(() -> {
+                        AlarmReminderScheduler.getInstance().unscheduleAlarmReminder(AddReminderActivity.this.getApplicationContext(), mAlarmReminder);
                         finish();
                     }, throwable -> {
                         throwable.printStackTrace();
@@ -554,6 +556,9 @@ public class AddReminderActivity extends AppCompatActivity implements
             //this is a new reminder, so insert a new reminder into the provider
             //returning the content URI for the new reminder
             mAlarmReminder = alarmReminder;
+            if (mAlarmReminder.getId() == null || mAlarmReminder.getId().isEmpty()) {
+                mAlarmReminder.setId(UUID.randomUUID().toString());
+            }
             Disposable disposable = Completable.create(emitter -> {
                         ApplicationDatabase.getInstance(this.getApplicationContext())
                                 .alarmReminderDao()
@@ -568,6 +573,11 @@ public class AddReminderActivity extends AppCompatActivity implements
                     });
             disposables.add(disposable);
         }else {
+
+            if (mAlarmReminder.getId() == null || mAlarmReminder.getId().isEmpty()) {
+                mAlarmReminder.setId(UUID.randomUUID().toString());
+            }
+
             Disposable disposable = Completable.create(emitter -> {
                         ApplicationDatabase.getInstance(this.getApplicationContext())
                                 .alarmReminderDao()
@@ -600,15 +610,14 @@ public class AddReminderActivity extends AppCompatActivity implements
         if (mActive){
             if (mRepeat){
                 AlarmReminderScheduler.getInstance().setRepeatAlarm(this.getApplicationContext(), mAlarmReminder);
-            }else if (!mRepeat){
+            }else {
                 AlarmReminderScheduler.getInstance().setAlarm(this.getApplicationContext(), mAlarmReminder);
             }
             Toast.makeText(this, "Alarm time is" + SimpleDateFormat.getDateTimeInstance().format(mAlarmReminder.getTime()), Toast.LENGTH_LONG).show();
 
         }
-        //create toast to confrirm new reminder
+        //create toast to confirm new reminder
         Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-
     }
 
     //on pressing the back button
