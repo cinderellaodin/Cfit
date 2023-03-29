@@ -11,6 +11,9 @@ import com.odin.cfit.data.AlarmReminder;
 
 import java.util.List;
 
+import io.reactivex.Maybe;
+import io.reactivex.Single;
+
 @Dao
 public interface AlarmReminderDao {
 
@@ -19,6 +22,11 @@ public interface AlarmReminderDao {
 
     @Query("SELECT * FROM alarmreminder WHERE ID IS :id")
     public LiveData<AlarmReminder> get(String id);
+
+    @Query("SELECT * FROM alarmreminder WHERE ID IS :id")
+    public AlarmReminder getBlocking(String id);
+    @Query("SELECT * FROM alarmreminder WHERE ID IS :id")
+    public Maybe<AlarmReminder> getRx(String id);
 
     @Query("SELECT * FROM alarmreminder WHERE id IN (:ids)")
     public LiveData<List<AlarmReminder>> loadAllByIds(int[] ids);
