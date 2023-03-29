@@ -56,6 +56,7 @@ public class FoodLogActivity extends AppCompatActivity {
     private FoodLogAdapter mfoodLogAdapter;
     List<FoodDiary> mFoodDiary;
     FloatingActionButton fb_foodDiary;
+    Dialog FLogdialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,7 @@ public class FoodLogActivity extends AppCompatActivity {
             }
         });
 
-        logFood();
+       // logFood();
         retrieveFoodLog();
     }
 
@@ -126,7 +127,7 @@ public class FoodLogActivity extends AppCompatActivity {
 
     public void logFood(){
 
-        final Dialog FLogdialog = new Dialog(FoodLogActivity.this);
+        FLogdialog = new Dialog(FoodLogActivity.this);
         FLogdialog.setContentView(R.layout.food_log_dialog);
         FLogdialog.setCancelable(true);
 

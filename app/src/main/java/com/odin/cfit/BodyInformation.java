@@ -195,8 +195,8 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
                         tvgweight.setText(String.valueOf(ugweight));
                         tvactivity.setText(uactivity);
 
-                        forecastTv.setText("With the information provided, with " +
-                                "losing 1kg per week, you'll reach your goal weight on or during the period of " + weightforecastS);
+                        forecastTv.setText("With the information provided, with " +" "+
+                                "losing 1kg per week, you'll reach your goal weight on or during the period of " +" "+ weightforecastS);
 
                     } catch (Exception e) {
                         Toast.makeText(BodyInformation.this, ""+ e.getMessage(), Toast.LENGTH_SHORT).show();

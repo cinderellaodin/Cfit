@@ -4,6 +4,7 @@ package com.odin.cfit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,10 @@ import java.util.List;
 
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
@@ -77,8 +82,6 @@ public class progress_report extends Fragment {
     Calendar calendar;
     DatePickerDialog datePickerDialog;
     LineChartView lineChartView;
-    private ArrayList<Object> pointValueList;
-    private ArrayList<Object> linesList;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -126,7 +129,10 @@ public class progress_report extends Fragment {
 
         //line chart
        lineChartView = view.findViewById(R.id.chart);
-       initView(lineChartView);
+
+
+
+        // Set chart
 
 
         /*for fab menu*/
@@ -197,13 +203,6 @@ public class progress_report extends Fragment {
 
     }
 
-    private void initView(LineChartView lineChartView) {
-
-        pointValueList = new ArrayList<>();
-        linesList = new ArrayList<>();
-
-
-    }
 
     private void ReportDialog() {
 

@@ -12,14 +12,13 @@ public class WorkoutPlans {
 
 
     public WorkoutPlans(String entryDate, String planName, String exerciseName, double exReps, double exSets, double exRest, double exDuration) {
-        EntryDate = entryDate;
+        this.EntryDate = entryDate;
         this.planName = planName;
-        ExerciseName = exerciseName;
+        this.ExerciseName = exerciseName;
         this.exReps = exReps;
         this.exSets = exSets;
         this.exRest = exRest;
         this.exDuration = exDuration;
-        this.key = key;
     }
 
 

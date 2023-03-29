@@ -43,13 +43,12 @@ public class fragworkout extends Fragment implements View.OnClickListener {
     private DatabaseReference databaseReference;
     private ValueEventListener mDBListener;
     FirebaseUser fUser;
-    TextView tvwork, tvGuide;
-    FloatingActionButton fabPlan;
+    TextView tvGuide;
+    FloatingActionButton fabPlan, fabViewPlans, fabTips, fabCalc;
     EditText etPlanName;
 
-    RecyclerView recyclerView;
-    private WPlanTrackerAdapter mWPlanTrackerAdapter;
-    List<WorkoutPlans> mWorkoutPlans;
+
+
     Intent intent;
 
     String planName, ExerciseName;
@@ -71,98 +70,22 @@ public class fragworkout extends Fragment implements View.OnClickListener {
         //database reference
         databaseReference = FirebaseDatabase.getInstance().getReference(fUser.getUid());
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_workoutPlans);
-        tvwork = (TextView) view.findViewById(R.id.workout_txt);
-        tvwork.setText("Select your prefered work out");
-
-        tvGuide = (TextView) view.findViewById(R.id.tv_guide);
+       /* tvGuide = (TextView) view.findViewById(R.id.tv_guide);
         tvGuide.setText("Click on the Float button to create a workout plan");
-
+*/
 
         fabPlan = (FloatingActionButton) view.findViewById(R.id.fab_workout_plan);
+        fabViewPlans = (FloatingActionButton) view.findViewById(R.id.btn_View_plans);
+        fabTips = (FloatingActionButton) view.findViewById(R.id.btn_viewTips);
+        fabCalc = (FloatingActionButton) view.findViewById(R.id.calcbtn);
+
         fabPlan.setOnClickListener(this);
-
-        //to retrieve workout plans
-        retrieveWorkoutPlans();
-    }
-
-    private void retrieveWorkoutPlans() {
-
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        recyclerView.setHasFixedSize(true);
-        mWorkoutPlans = new ArrayList<>();
-        mWPlanTrackerAdapter = new WPlanTrackerAdapter(getActivity(), mWorkoutPlans);
-
-
-        mDBListener =  databaseReference.child(fUser.getUid()).child("Workout Plans").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    try{
-                        tvGuide.setVisibility(View.INVISIBLE);
-                        mWorkoutPlans.clear();
-                        WorkoutPlans workoutPlans = snapshot.getValue(WorkoutPlans.class);
-                        mWorkoutPlans.add(workoutPlans);
-                        if (mWorkoutPlans.size()<=0) {
-                            Toast.makeText(getActivity(), "No workout plan created yet", Toast.LENGTH_SHORT).show();
-
-                        }else{
-                            recyclerView.setAdapter(mWPlanTrackerAdapter);
-                            // Toast.makeText(getActivity(), "weight"+ weights, Toast.LENGTH_SHORT).show();
-
-                        }
-
-                    } catch (Exception e) {
-                        //throw new RuntimeException(e);
-                        Toast.makeText(getActivity(), ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }else {
-                    tvGuide.setVisibility(View.VISIBLE);
-                }
-
-              /*  mWorkoutPlans.clear();
-
-                }*/
-
-                mWPlanTrackerAdapter.notifyDataSetChanged();
-
-               // mProgressCircle.setVisibility(View.INVISIBLE);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(),"The read failed ", Toast.LENGTH_LONG).show();
-
-            }
-        });
-        mWPlanTrackerAdapter.setOnItemClickListener(new WPlanTrackerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                final String selectedKey;
-
-        /*        WorkoutPlans selected = mWorkoutPlans.get(position);
-                selectedKey = selected.getKey();
-
-                databaseReference.child(fUser.getUid()).child("Workout Plans").child(selectedKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-
-                        Toast.makeText(getContext(),"Item Deleted" , Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-                mWPlanTrackerAdapter.notifyDataSetChanged();*/
-               // mProgressCircle.setVisibility(View.INVISIBLE);
-            }
-        });
-
+        fabViewPlans.setOnClickListener(this);
+        fabTips.setOnClickListener(this);
+        fabCalc.setOnClickListener(this);
 
     }
+
 
 
     @Nullable
@@ -177,8 +100,13 @@ public class fragworkout extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == fabPlan){
-            //startActivity(new Intent(getContext(), workout.class));
             SetPlanName();
+        } else if (v == fabViewPlans) {
+            startActivity(new Intent(getContext(), WorkoutPlansActivity.class));
+        }else if (v == fabTips) {
+        //startActivity(new Intent(getContext(), workout.class));
+        }else if (v == fabCalc) {
+            startActivity(new Intent(getContext(), BodyInformation.class));
         }
     }
 

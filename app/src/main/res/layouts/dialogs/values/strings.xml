@@ -111,6 +111,13 @@
     <string name="click">you have to enter values in the calculator to determine how long it will take.</string>
     <string name="wp">Workout Plan</string>
     <string name="savefood">Save</string>
+    <string name="dialogLabel">Food Diary Entry</string>
+    <string name="etips">Exercise Tips</string>
+    <string name="eplans">Exercise Plans</string>
+    <string name="dtips">Diet Tips</string>
+    <string name="fdiary">Food Diary</string>
+    <string name="rlabel">Reminder saved</string>
+    <string name="error_title_empty">Empty Title</string>
 
 
 </resources>

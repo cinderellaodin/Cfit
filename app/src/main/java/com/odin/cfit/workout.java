@@ -1,7 +1,11 @@
 package com.odin.cfit;
 
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,10 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.odin.cfit.model.WorkoutPlans;
 
+import java.util.Calendar;
+
 public class workout extends AppCompatActivity {
 
     String newWorkout_PlanName, WPname;
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+
     private DatabaseReference databaseReference;
     private ValueEventListener mDBListener;
     FirebaseUser fUser;
@@ -32,14 +41,14 @@ public class workout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        setTitle(WPname + "Plan");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (getIntent().hasExtra("plan_name")){
             WPname = getIntent().getStringExtra("plan_name");
 
             /* getSupportActionBar().setTitle(WPname);*/
         }
+        getSupportActionBar().setTitle( WPname + "Plan");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //firebase initialization
         firebaseAuth = FirebaseAuth.getInstance();
@@ -50,7 +59,8 @@ public class workout extends AppCompatActivity {
         fUser = firebaseAuth.getCurrentUser();
 
         //database reference
-        databaseReference = FirebaseDatabase.getInstance().getReference(fUser.getUid());
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
         btncancel = (Button) findViewById(R.id.btncancle);
         btnsave = (Button) findViewById(R.id.btn_save_plan);
@@ -62,7 +72,7 @@ public class workout extends AppCompatActivity {
         etExerciseduration = (EditText) findViewById(R.id.etExerciseDuration);
         tvlabel = (TextView) findViewById(R.id.wlabel);
 
-        tvlabel.setText(WPname + "Workout Plan");
+        tvlabel.setText(WPname);
 
 
         btnsave.setOnClickListener(new View.OnClickListener() {
@@ -85,31 +95,30 @@ public class workout extends AppCompatActivity {
 
 
     private void saveWorkoutPlan(String planNmae, String ExerciseName, double Ereps, double Esets, double Erest, double Eduration ){
-
-        WorkoutPlans workoutPlans = new WorkoutPlans();
+        String cc = "12/13/2023";
+        WorkoutPlans workoutPlans = new WorkoutPlans(cc, planNmae, ExerciseName, Ereps, Esets, Erest, Eduration);
 
        String uploadId = databaseReference.push().getKey();
-      //  databaseReference.child("Workout Plans").child(uploadId).setValue(workoutPlans);
-        databaseReference.child(fUser.getUid()).child("Workout Plans").child(planNmae).child(uploadId).setValue(workoutPlans);
-
+        databaseReference.child(fUser.getUid()).child("Workout Plans").child(uploadId).setValue(workoutPlans);
+        addnotification(planNmae);
         Toast.makeText(workout.this, planNmae+" event has been added. ", Toast.LENGTH_SHORT).show();
 
 
     }
 
-    /*public void addnotification(){
+    public void addnotification(String WOplan){
         //first use the notificationcompact.builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_lightbulb_white)
+                .setSmallIcon(R.drawable.fitness)
                 .setContentTitle("Tips")
-                .setContentText("You Just added an event")
+                .setContentText("You Just Created  " + WOplan + " Plan")
                 .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText("You Just added an event......\n Click the event to check out Dressing tips"))
+                            .bigText("You Just created a plan......\n Click the event to check out Dressing tips"))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        Intent notificationIntent = new Intent(this, Event.class);
+       /* Intent notificationIntent = new Intent(this, Event.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0 , notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
+        builder.setContentIntent(contentIntent);*/
         builder.setAutoCancel(true);
         builder.setColor(Color.parseColor("#FF80AB"));
         long[] vibrate = {0, 100, 200, 300};
@@ -120,6 +129,5 @@ public class workout extends AppCompatActivity {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(0, builder.build());
     }
-*/
 
 }

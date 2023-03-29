@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,20 +46,23 @@ import java.util.Calendar;
 /*import android.support.v4.app.Fragment;*/
 
 
-public class diet extends Fragment{
+public class diet extends Fragment implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     FirebaseUser fUser;
     TextView tvdiet, tvCalorie, tvGuide, tvWeight_difference;
-     ImageButton bt_toggle_text;
-     Button bt_hide_text;
-     View lyt_expand_text, lyt_diet_results;
      double required_Calories, converted_weight, weight_diff;
      String uRequCal, uWeight_diff;
     EditText etweight, etgweight;
     //DecimalFormat df = new DecimalFormat("0.00");
 
+    FloatingActionButton fab_options, fab_addFood,fab_reqCal, fab_foodlog, fab_foodTips, fab_calc;
 
+    private View parent_view;
+    private View back_drop;
+    private boolean rotate = false;
+    private View lyt_tape;
+    private View lyt_scale;
 
 
 
@@ -80,72 +84,71 @@ public class diet extends Fragment{
         databaseReference = FirebaseDatabase.getInstance().getReference(fUser.getUid());
 
 
-        bt_toggle_text = (ImageButton) view.findViewById(R.id.bt_toggle_text);
-        bt_hide_text = (Button) view.findViewById(R.id.bt_hide_text);
-        lyt_expand_text = (View) view.findViewById(R.id.lyt_expand_text);
-        lyt_expand_text.setVisibility(View.GONE);
 
-        lyt_diet_results =(View) view.findViewById(R.id.Lay_diet_results);
-        lyt_diet_results.setVisibility(View.INVISIBLE);
-
-        //intitialized
-        tvdiet = (TextView) view.findViewById(R.id.dietfrag_txt);
-        //tvdiet.setText("Click the Fab Button to calculate your required calorie to lose weight.");
-        tvdiet.setText("About Eating For Weightloss");
         tvCalorie =(TextView) view.findViewById(R.id.tv_calorie);
 
-        tvGuide = (TextView) view.findViewById(R.id.tv_guide);
+      /*  tvGuide = (TextView) view.findViewById(R.id.tv_guide);
         tvGuide.setText("Click on the menu button to calculate your required calories to lose weight");
-
+*/
         tvWeight_difference = (TextView) view.findViewById(R.id.tv_weighttoLose);
 
-        initComponent();
         retieveData();
 
-    }
+        /*for fab menu*/
+        parent_view = view.findViewById(android.R.id.content);
+        back_drop = view.findViewById(R.id.back_drop);
+
+        lyt_tape = view.findViewById(R.id.lyt_tape);
+        lyt_scale = view.findViewById(R.id.lyt_scale);
+        ViewAnimation.initShowOut(lyt_tape);
+        ViewAnimation.initShowOut(lyt_scale);
+        back_drop.setVisibility(View.GONE);
+
+        fab_options = (FloatingActionButton) view.findViewById(R.id.fab_food_options);
+        fab_addFood = (FloatingActionButton) view.findViewById(R.id.fab_food_log);
+        fab_reqCal = (FloatingActionButton) view.findViewById(R.id.fab_Req_cal);
 
 
-    public void initComponent(){
-        // text section
+        fab_foodlog = (FloatingActionButton) view.findViewById(R.id.btn_log_food);
+        fab_foodTips = (FloatingActionButton) view.findViewById(R.id.btn_viewDTips);
+        fab_calc = (FloatingActionButton) view.findViewById(R.id.calcbtn);
 
+        fab_options.setOnClickListener(this);
+        fab_reqCal.setOnClickListener(this);
+        fab_addFood.setOnClickListener(this);
+        fab_foodlog.setOnClickListener(this);
+        fab_foodTips.setOnClickListener(this);
+        fab_calc.setOnClickListener(this);
 
-        bt_toggle_text.setOnClickListener(new View.OnClickListener() {
+        fab_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggleSectionText(bt_toggle_text);
+                toggleFabMode(view);
+            }
+        });
+        back_drop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleFabMode(fab_options);
             }
         });
 
-        bt_hide_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleSectionText(bt_toggle_text);
-            }
-        });
     }
-    private void toggleSectionText(View view) {
-        boolean show = toggleArrow(view);
-        if (show) {
-            ViewAnimation.expand(lyt_expand_text, new ViewAnimation.AnimListener() {
-                @Override
-                public void onFinish() {
-                   // Tools.nestedScrollTo(nested_scroll_view, lyt_expand_text);
-                }
-            });
+
+    /*for fab menu animation*/
+    private void toggleFabMode(View v) {
+        rotate = ViewAnimation.rotateFab(v, !rotate);
+        if (rotate) {
+            ViewAnimation.showIn(lyt_tape);
+            ViewAnimation.showIn(lyt_scale);
+            back_drop.setVisibility(View.VISIBLE);
         } else {
-            ViewAnimation.collapse(lyt_expand_text);
+            ViewAnimation.showOut(lyt_tape);
+            ViewAnimation.showOut(lyt_scale);
+            back_drop.setVisibility(View.GONE);
         }
     }
 
-    public boolean toggleArrow(View view) {
-        if (view.getRotation() == 0) {
-            view.animate().setDuration(200).rotation(180);
-            return true;
-        } else {
-            view.animate().setDuration(200).rotation(0);
-            return false;
-        }
-    }
 
 //required Calories
     private void calculateRequiredCalories() {
@@ -225,7 +228,6 @@ public class diet extends Fragment{
                if (snapshot.exists()){
                    try{
                        tvGuide.setVisibility(View.INVISIBLE);
-                       lyt_diet_results.setVisibility(View.VISIBLE);
                        UserReqCalorie userReqCalorie = snapshot.getValue(UserReqCalorie.class);
 
                        uRequCal = userReqCalorie.getRequiredCal();
@@ -253,27 +255,7 @@ public class diet extends Fragment{
 
    }
 
-    /*menu Selection*/
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.diet_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_calculate) {
-            calculateRequiredCalories();
-        } else if (id == R.id.action_Logfood){
-           // logFood();
-            //starting home activity
-            getContext();
-            startActivity(new Intent(getContext(), FoodLogActivity.class));
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
     @Nullable
@@ -285,5 +267,18 @@ public class diet extends Fragment{
     }
 
 
-
+    @Override
+    public void onClick(View v) {
+         if (v == fab_addFood) {
+             startActivity(new Intent(getContext(), FoodLogActivity.class));
+        } else if (v == fab_reqCal) {
+             calculateRequiredCalories();
+         } else if (v == fab_foodlog) {
+            startActivity(new Intent(getContext(), FoodLogActivity.class));
+        }else if (v == fab_foodTips) {
+            //startActivity(new Intent(getContext(), workout.class));
+        }else if (v == fab_calc) {
+            startActivity(new Intent(getContext(), BodyInformation.class));
+        }
+    }
 }

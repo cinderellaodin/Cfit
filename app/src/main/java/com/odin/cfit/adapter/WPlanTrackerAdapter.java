@@ -30,13 +30,16 @@ public class WPlanTrackerAdapter extends RecyclerView.Adapter<WPlanTrackerAdapte
     @NonNull
     @Override
     public WPlanTrackerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_workoutplan_list,parent,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_plan_list,parent,false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull WPlanTrackerAdapter.ViewHolder holder, int position) {
             WorkoutPlans workoutPlans = mWorkoutPlans.get(position);
+
+        String pName = workoutPlans.getPlanName();
+        holder.planName.setText(pName);
 
 
     }
@@ -50,17 +53,11 @@ public class WPlanTrackerAdapter extends RecyclerView.Adapter<WPlanTrackerAdapte
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView planName, exerciseName, eReps, eSets, eRest, eDuration;
+        public TextView planName;
 
         public ViewHolder(View v) {
             super(v);
             planName = v.findViewById(R.id.PlanName);
-            exerciseName = v.findViewById(R.id.ExerciseName);
-            eReps = v.findViewById(R.id.Exercise_Reps);
-            eSets = v.findViewById(R.id.Exercise_Sets);
-            eRest = v.findViewById(R.id.Exercise_Rest);
-            eDuration = v.findViewById(R.id.Exercise_Duration);
-
             v.setOnClickListener(this);
 
         }
