@@ -5,16 +5,19 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -314,6 +317,10 @@ public class progress_report extends Fragment {
                        // Toast.makeText(getActivity(), "weight"+ weights, Toast.LENGTH_SHORT).show();
 
                     }
+
+                    if (mWeighTracker.size()>= 2){
+                        encourageUser();
+                    }
                 }
 
                 mwtrackerAdapter.notifyDataSetChanged();
@@ -351,6 +358,23 @@ public class progress_report extends Fragment {
 
 
 
+    }
+    public void encourageUser(){
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_achievement_congrat);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        TextView tv = (TextView) dialog.findViewById(R.id.tv_msgUser);
+        tv.setText("Way To Go! Keep Tracking!");
+        dialog.findViewById(R.id.bt_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Excited Clicked", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
   /*  private boolean isNetworkConnected() {
