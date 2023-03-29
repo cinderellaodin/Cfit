@@ -26,8 +26,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,23 +46,25 @@ import java.util.Calendar;
 /*import android.support.v4.app.Fragment;*/
 
 
-public class diet extends Fragment{
+public class diet extends Fragment implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     FirebaseUser fUser;
     TextView tvdiet, tvCalorie, tvGuide, tvWeight_difference;
-     ImageButton bt_toggle_text;
-     Button bt_hide_text;
-     View lyt_expand_text, lyt_diet_results;
-     double required_Calories, converted_weight, uRequCal, weight_diff, uWeight_diff;
-    EditText etweight, etgweight, etFood;
+     double required_Calories, converted_weight, weight_diff;
+     String uRequCal, uWeight_diff;
+    EditText etweight, etgweight;
     //DecimalFormat df = new DecimalFormat("0.00");
 
-    Spinner spinneFoodType;
-    int day, month, year, hour, minute;
-    Calendar calendar;
-    DatePickerDialog datePickerDialog;
-    TimePickerDialog timePickerDialog;
+    FloatingActionButton fab_options, fab_addFood,fab_reqCal, fab_foodlog, fab_foodTips, fab_calc;
+
+    private View parent_view;
+    private View back_drop;
+    private boolean rotate = false;
+    private View lyt_tape;
+    private View lyt_scale;
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -80,73 +84,71 @@ public class diet extends Fragment{
         databaseReference = FirebaseDatabase.getInstance().getReference(fUser.getUid());
 
 
-       // df.setRoundingMode(RoundingMode.UP);
 
-        bt_toggle_text = (ImageButton) view.findViewById(R.id.bt_toggle_text);
-        bt_hide_text = (Button) view.findViewById(R.id.bt_hide_text);
-        lyt_expand_text = (View) view.findViewById(R.id.lyt_expand_text);
-        lyt_expand_text.setVisibility(View.GONE);
-
-        lyt_diet_results =(View) view.findViewById(R.id.Lay_diet_results);
-        lyt_diet_results.setVisibility(View.INVISIBLE);
-
-        //intitialized
-        tvdiet = (TextView) view.findViewById(R.id.dietfrag_txt);
-        //tvdiet.setText("Click the Fab Button to calculate your required calorie to lose weight.");
-        tvdiet.setText("About Eating For Weightloss");
         tvCalorie =(TextView) view.findViewById(R.id.tv_calorie);
 
-        tvGuide = (TextView) view.findViewById(R.id.tv_guide);
+      /*  tvGuide = (TextView) view.findViewById(R.id.tv_guide);
         tvGuide.setText("Click on the menu button to calculate your required calories to lose weight");
-
+*/
         tvWeight_difference = (TextView) view.findViewById(R.id.tv_weighttoLose);
 
-        initComponent();
         retieveData();
-    }
+
+        /*for fab menu*/
+        parent_view = view.findViewById(android.R.id.content);
+        back_drop = view.findViewById(R.id.back_drop);
+
+        lyt_tape = view.findViewById(R.id.lyt_tape);
+        lyt_scale = view.findViewById(R.id.lyt_scale);
+        ViewAnimation.initShowOut(lyt_tape);
+        ViewAnimation.initShowOut(lyt_scale);
+        back_drop.setVisibility(View.GONE);
+
+        fab_options = (FloatingActionButton) view.findViewById(R.id.fab_food_options);
+        fab_addFood = (FloatingActionButton) view.findViewById(R.id.fab_food_log);
+        fab_reqCal = (FloatingActionButton) view.findViewById(R.id.fab_Req_cal);
 
 
-    public void initComponent(){
-        // text section
+        fab_foodlog = (FloatingActionButton) view.findViewById(R.id.btn_log_food);
+        fab_foodTips = (FloatingActionButton) view.findViewById(R.id.btn_viewDTips);
+        fab_calc = (FloatingActionButton) view.findViewById(R.id.calcbtn);
 
+        fab_options.setOnClickListener(this);
+        fab_reqCal.setOnClickListener(this);
+        fab_addFood.setOnClickListener(this);
+        fab_foodlog.setOnClickListener(this);
+        fab_foodTips.setOnClickListener(this);
+        fab_calc.setOnClickListener(this);
 
-        bt_toggle_text.setOnClickListener(new View.OnClickListener() {
+        fab_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggleSectionText(bt_toggle_text);
+                toggleFabMode(view);
+            }
+        });
+        back_drop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleFabMode(fab_options);
             }
         });
 
-        bt_hide_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleSectionText(bt_toggle_text);
-            }
-        });
     }
-    private void toggleSectionText(View view) {
-        boolean show = toggleArrow(view);
-        if (show) {
-            ViewAnimation.expand(lyt_expand_text, new ViewAnimation.AnimListener() {
-                @Override
-                public void onFinish() {
-                   // Tools.nestedScrollTo(nested_scroll_view, lyt_expand_text);
-                }
-            });
+
+    /*for fab menu animation*/
+    private void toggleFabMode(View v) {
+        rotate = ViewAnimation.rotateFab(v, !rotate);
+        if (rotate) {
+            ViewAnimation.showIn(lyt_tape);
+            ViewAnimation.showIn(lyt_scale);
+            back_drop.setVisibility(View.VISIBLE);
         } else {
-            ViewAnimation.collapse(lyt_expand_text);
+            ViewAnimation.showOut(lyt_tape);
+            ViewAnimation.showOut(lyt_scale);
+            back_drop.setVisibility(View.GONE);
         }
     }
 
-    public boolean toggleArrow(View view) {
-        if (view.getRotation() == 0) {
-            view.animate().setDuration(200).rotation(180);
-            return true;
-        } else {
-            view.animate().setDuration(200).rotation(0);
-            return false;
-        }
-    }
 
 //required Calories
     private void calculateRequiredCalories() {
@@ -204,14 +206,17 @@ public class diet extends Fragment{
         DecimalFormat deciFormat = new DecimalFormat();
         deciFormat.setMaximumFractionDigits(2);
         String requiredCalories2Dec = deciFormat.format(required_Calories);
+        String Wdiff = deciFormat.format(weight_diff);
 
         // convert back to double
-        required_Calories = Double.parseDouble(requiredCalories2Dec);
+       // required_Calories = Double.parseDouble(requiredCalories2Dec);
+      //String req_Calories = requiredCalories2Dec;
 
 
-        Toast.makeText(getActivity(), converted_weight + " " + required_Calories + " " +"Calculate calories", Toast.LENGTH_SHORT).show();
 
-        UserReqCalorie userReqCalorie = new UserReqCalorie(required_Calories, weight_diff);
+        Toast.makeText(getActivity(), Wdiff + " " + requiredCalories2Dec + " " +"Calculate calories", Toast.LENGTH_SHORT).show();
+
+        UserReqCalorie userReqCalorie = new UserReqCalorie(requiredCalories2Dec, Wdiff);
         //firebase
         databaseReference.child("Required Calories").setValue(userReqCalorie);
     }
@@ -223,7 +228,6 @@ public class diet extends Fragment{
                if (snapshot.exists()){
                    try{
                        tvGuide.setVisibility(View.INVISIBLE);
-                       lyt_diet_results.setVisibility(View.VISIBLE);
                        UserReqCalorie userReqCalorie = snapshot.getValue(UserReqCalorie.class);
 
                        uRequCal = userReqCalorie.getRequiredCal();
@@ -251,126 +255,7 @@ public class diet extends Fragment{
 
    }
 
-    public void logFood(){
-        ArrayAdapter<CharSequence> adapter;
-        final Dialog FLogdialog = new Dialog(getContext());
-        FLogdialog.setContentView(R.layout.food_log_dialog);
-        FLogdialog.setCancelable(true);
 
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(FLogdialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-
-        spinneFoodType = (Spinner) FLogdialog.findViewById(R.id.spinnerFoodType);
-
-        etFood = (EditText) FLogdialog.findViewById(R.id.etfood);
-
-        final TextView tvDate = (TextView) FLogdialog.findViewById(R.id.tvDate);
-        final TextView tvTime = (TextView) FLogdialog.findViewById(R.id.tvTime);
-        final Button btncancle = (Button) FLogdialog.findViewById(R.id.btncancle);
-        final Button btnsaveinfo = (Button) FLogdialog.findViewById(R.id.btnsaveinfo);
-
-        adapter = ArrayAdapter.createFromResource(getContext(), R.array.food_type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinneFoodType.setAdapter(adapter);
-//        spinneFoodType.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) getContext());
-
-        tvDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calendar = Calendar.getInstance();
-                year = calendar.get(Calendar.YEAR);
-                month = calendar.get(Calendar.MONTH);
-                day = calendar.get(Calendar.DAY_OF_MONTH);
-
-                datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String tdate = String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(dayOfMonth);
-                        tvDate.setText(tdate);
-
-
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-
-            }
-        });
-
-        tvTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                       tvTime.setText(hourOfDay + ":" + minute);
-                        }
-                }, hour, minute, true);
-                timePickerDialog.show();
-            }
-        });
-
-
-        //buttons
-        btncancle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FLogdialog.dismiss();
-            }
-        });
-
-        btnsaveinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                calc_required_calorie( Double.parseDouble(etweight.getText().toString().trim()),
-                        Double.parseDouble(etgweight.getText().toString().trim()));
-                food_diary_entry(
-                        spinneFoodType.getSelectedItem().toString().trim(),
-                        etFood.getText().toString().trim(),
-                        tvDate.getText().toString().trim(),
-                        tvTime.getText().toString().trim()
-
-                );
-                /*
-                etweight.setText("");
-                etgweight.setText("");*/
-
-                FLogdialog.dismiss();
-            }
-        });
-        // show it
-        FLogdialog.show();
-        FLogdialog.getWindow().setAttributes(lp);
-    }
-
-
-
-    public void food_diary_entry(String foodType, String foodDetails, String tvDate, String tvTime){
-
-        FoodDiary foodDiary = new FoodDiary(foodType, foodDetails, tvDate, tvTime);
-        String uploadCId = databaseReference.push().getKey();
-        databaseReference.child(fUser.getUid()).child("Food Diary").child(uploadCId).setValue(foodDiary);
-    }
-
-    /*menu Selection*/
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.diet_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_calculate) {
-            calculateRequiredCalories();
-        } else if (id == R.id.action_Logfood){
-            logFood();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
     @Nullable
@@ -378,10 +263,22 @@ public class diet extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        spinneFoodType = rootView.findViewById(R.id.spinnerFoodType);
-
         return rootView;
     }
 
 
+    @Override
+    public void onClick(View v) {
+         if (v == fab_addFood) {
+             startActivity(new Intent(getContext(), FoodLogActivity.class));
+        } else if (v == fab_reqCal) {
+             calculateRequiredCalories();
+         } else if (v == fab_foodlog) {
+            startActivity(new Intent(getContext(), FoodLogActivity.class));
+        }else if (v == fab_foodTips) {
+            //startActivity(new Intent(getContext(), workout.class));
+        }else if (v == fab_calc) {
+            startActivity(new Intent(getContext(), BodyInformation.class));
+        }
+    }
 }

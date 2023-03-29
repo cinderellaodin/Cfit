@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.wrapp.floatlabelededittext:library:0.0.6@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8ccebb8de2d8ab8dbe883968dbe4991c/transformed/jetified-library-0.0.6/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8ccebb8de2d8ab8dbe883968dbe4991c/transformed/jetified-library-0.0.6/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8ccebb8de2d8ab8dbe883968dbe4991c/transformed/jetified-library-0.0.6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ec528afe42cc276e0e0c35d7b96a1bc8/transformed/jetified-library-0.0.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ec528afe42cc276e0e0c35d7b96a1bc8/transformed/jetified-library-0.0.6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ec528afe42cc276e0e0c35d7b96a1bc8/transformed/jetified-library-0.0.6/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wrapp.floatlabelededittext/library/0.0.6/e0e950e5514a53312b03c453b1308a87b5bb410/library-0.0.6-javadoc.jar!/" />

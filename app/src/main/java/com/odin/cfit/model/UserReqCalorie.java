@@ -2,29 +2,30 @@ package com.odin.cfit.model;
 
 public class UserReqCalorie {
 
-    public double requiredCal, weightDiff;
+
+    public String requiredCal, weightDiff;
 
     public UserReqCalorie() {
     }
 
-    public UserReqCalorie(double required_calories, double weight_diff) {
-        this.requiredCal = required_calories;
-        this.weightDiff = weight_diff;
+    public UserReqCalorie(String requiredCal, String weightDiff) {
+        this.requiredCal = requiredCal;
+        this.weightDiff = weightDiff;
     }
 
-    public double getRequiredCal() {
+    public String getRequiredCal() {
         return requiredCal;
     }
 
-    public void setRequiredCal(double requiredCal) {
+    public void setRequiredCal(String requiredCal) {
         this.requiredCal = requiredCal;
     }
 
-    public double getWeightDiff() {
+    public String getWeightDiff() {
         return weightDiff;
     }
 
-    public void setWeightDiff(double weightDiff) {
+    public void setWeightDiff(String weightDiff) {
         this.weightDiff = weightDiff;
     }
 }

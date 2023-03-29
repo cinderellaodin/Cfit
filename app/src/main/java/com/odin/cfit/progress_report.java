@@ -4,6 +4,7 @@ package com.odin.cfit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,6 +41,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import lecho.lib.hellocharts.gesture.ContainerScrollType;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
 /*import android.support.v4.app.Fragment;*/
@@ -72,6 +81,7 @@ public class progress_report extends Fragment {
     int day, month, year, yearfinal;
     Calendar calendar;
     DatePickerDialog datePickerDialog;
+    LineChartView lineChartView;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -118,8 +128,11 @@ public class progress_report extends Fragment {
         });*/
 
         //line chart
-      LineChartView lineChartView = view.findViewById(R.id.chart);
+       lineChartView = view.findViewById(R.id.chart);
 
+
+
+        // Set chart
 
 
         /*for fab menu*/
@@ -189,6 +202,7 @@ public class progress_report extends Fragment {
         });
 
     }
+
 
     private void ReportDialog() {
 
@@ -293,7 +307,7 @@ public class progress_report extends Fragment {
                     weights.setKey(ds.getKey());
                     mWeighTracker.add(weights);
                     if (mWeighTracker.size()<=0) {
-                        Toast.makeText(getActivity(), "No Posts yet\n be sure to post some fashion trends", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No weights logged yet\n be sure to log your weight", Toast.LENGTH_SHORT).show();
 
                     }else{
                         recyclerView.setAdapter(mwtrackerAdapter);
@@ -313,6 +327,29 @@ public class progress_report extends Fragment {
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
+
+        mwtrackerAdapter.setOnItemClickListener(new WeightTrackerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                final String selectedKey;
+
+                WeighTracker selected = mWeighTracker.get(position);
+                selectedKey = selected.getKey();
+
+                databaseReference.child(user.getUid()).child("Weight Tracker").child(selectedKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        Toast.makeText(getContext(),"Item Deleted" , Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                mwtrackerAdapter.notifyDataSetChanged();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
 
     }
 

@@ -53,7 +53,7 @@ private static final int VEHICLE_LOADER = 0;
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("CFit Reminder");
 
-        mAddReminderButton = view.findViewById(R.id.fab_add);
+        mAddReminderButton = view.findViewById(R.id.fab_reminder_add);
         reminderListView = view.findViewById(R.id.list);
         emptyView = view.findViewById(R.id.empty_view);
 
