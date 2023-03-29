@@ -9,8 +9,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -111,6 +113,9 @@ public class FoodLogActivity extends AppCompatActivity {
                         // Toast.makeText(getActivity(), "weight"+ weights, Toast.LENGTH_SHORT).show();
 
                     }
+                    if (mFoodDiary.size()>= 2){
+                        encourageUser();
+                    }
                 }
 
                 mfoodLogAdapter.notifyDataSetChanged();
@@ -124,7 +129,23 @@ public class FoodLogActivity extends AppCompatActivity {
         });
     }
 
-
+    public void encourageUser(){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_achievement_congrat);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        TextView tv = (TextView) dialog.findViewById(R.id.tv_msgUser);
+        tv.setText("Way To Go! Keep Tracking!");
+        dialog.findViewById(R.id.bt_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(FoodLogActivity.this, "Excited Clicked", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
     public void logFood(){
 
         FLogdialog = new Dialog(FoodLogActivity.this);

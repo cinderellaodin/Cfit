@@ -3,6 +3,7 @@ package com.odin.cfit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,7 +65,7 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
     double selectedValue;
     double[] values = {+5, -161};
     double height, weight, gweight, age, bmi, dailycal, weightforecast, ugoalcal, ubodysize,
-            udressgoal, uweekgoal, bmr, uheight, uweight, ugweight,
+            udressgoal, uweekgoal, bmr, uheight, uweight, ugweight, gw,
     uchest, uarms, uwaist, ushoulder, uhip, ucalf, uthighs, uneck, uwrist;
 
     String msg = "";
@@ -549,11 +551,13 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         // String covntBmi = deciFormat.format(rbmi);
 
         //calculate required goal calories
-        ugoalcal = 12 * gweight;
+
+        gw = gweight * 2.2;
+        ugoalcal = 12 * gw ;
         ugoalcalS = deciFormat.format(ugoalcal);
 
         //calorie difference
-         calDiff = 3500 - ugoalcal;
+         calDiff = 3500 - gw;
 
         //weightforecast
          lbsWeight = weight * 2.2 - gweight * 2.2;
@@ -564,7 +568,7 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
         weightforecast = lbsweight_diff / calDiff;
          wfWeek = weightforecast / 7;
          wfMonth = wfWeek/4;
-        weightforecastS = String.valueOf(deciFormat.format(weightforecast)) + " Days" + String.valueOf(deciFormat.format(wfWeek)) + " Weeks";
+        weightforecastS = String.valueOf(deciFormat.format(weightforecast))+" " + " Days"+ " " + String.valueOf(deciFormat.format(wfWeek))+ " " + " Weeks";
 
         //BMI
         bmi = height / 100 * height / 100;
@@ -607,7 +611,25 @@ public class BodyInformation extends AppCompatActivity implements AdapterView.On
 
         Toast.makeText(this, "Saved....", Toast.LENGTH_LONG).show();
 
+        forecastAnnoucement(weightforecastS);
+    }
 
+    public void forecastAnnoucement(String weightforecastS){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_goal_forecast);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        TextView tv = (TextView) dialog.findViewById(R.id.goal_forecast);
+        tv.setText(weightforecastS);
+        dialog.findViewById(R.id.bt_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Excited Clicked", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override
